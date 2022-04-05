@@ -1,0 +1,3 @@
+# sushi-press
+
+Init repository
