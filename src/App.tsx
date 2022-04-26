@@ -1,24 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import AppRouter from "./AppRouter";
+import {GlobalStyles} from "@mui/material";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+        <GlobalStyles
+            styles={{
+                h1: { color: "#393939" },
+                h2: { color: "#393939" },
+                h3: { color: "#393939" },
+                h5: { color: "#393939", fontWeight: 'normal', margin: 0 },
+                body: { height: "100vh", backgroundColor: "#FFF8EF", margin: 0 }
+            }}
+        />
+        <AppRouter />
     </div>
   );
 }
