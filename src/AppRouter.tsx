@@ -10,6 +10,8 @@ const AppRouter = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<HomeContainer />}/>
+                <Route path="/menu-all-you-can-eat" element={<HomeContainer />}/>
+                <Route path="/menu-a-la-carte" element={<HomeContainer />}/>
             </Routes>
         </BrowserRouter>
     )

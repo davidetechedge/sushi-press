@@ -10,10 +10,9 @@ function App() {
             styles={{
                 h1: { color: "#393939" },
                 h2: { color: "#393939" },
-                body: { height: "100vh", backgroundColor: "#FFF8EF",display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'center' }
+                h3: { color: "#393939" },
+                h5: { color: "#393939", fontWeight: 'normal', margin: 0 },
+                body: { height: "100vh", backgroundColor: "#FFF8EF", margin: 0 }
             }}
         />
         <AppRouter />
