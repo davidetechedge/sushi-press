@@ -1,14 +1,15 @@
-import ReusableBox from "../Components/ReusableBox";
+
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {styled} from "@mui/material";
+import ReusableBox from "../Components/ReusableBox";
 import allyoucaneat from '../Assets/Images/allyoucaneat.png'
 import alacarte from '../Assets/Images/alacarte.png'
 import logo from '../Assets/Images/logo.png'
 import ReusableCounter from "../Components/ReusableCounter";
-import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../store";
-import { setOrderPeople, setOrderType } from "../store/actions/orders";
+import { getMenu, setOrderPeople, setOrderType } from "../store/actions/orders";
 import { OrderType } from "../store/types/orders";
-import { useNavigate } from "react-router-dom";
 
 const MyHomeContainer = styled('div')({
     display: 'flex',
@@ -55,6 +56,10 @@ const HomeContainer = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { people: peopleCounter,  type: orderType } = useAppSelector(state => state.orders);
+
+    useEffect(() => {
+        dispatch(getMenu());
+    }, [ dispatch ]);
 
     useEffect(() => {
         if ( typeof orderType !== "undefined" ) {

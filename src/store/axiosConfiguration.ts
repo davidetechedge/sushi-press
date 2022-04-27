@@ -6,7 +6,7 @@ export enum APIStatus { IDLE, PENDING, REJECTED, FULFILLED }
 
 export type APIError = {
   message: string,
-  code: number
+  code: string
 };
 
 export type APIData<DataType = any> = {
@@ -17,7 +17,7 @@ export type APIData<DataType = any> = {
 
 export const InternalError = {
   message: 'Generic error during request.',
-  code: -1
+  code: "ERR001"
 };
 
 /**
