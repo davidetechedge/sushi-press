@@ -34,6 +34,7 @@ function ReusableBox(props: ReusableBoxProps ) {
                 display: 'flex',
                 alignItems: 'flex-end'
             }}
+        onClick={props.onClick}
         >
             <LabelContainer>
                 <h3>{props.label}</h3>

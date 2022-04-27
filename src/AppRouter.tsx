@@ -1,6 +1,7 @@
 import { createBrowserHistory } from 'history'
 import {Route, BrowserRouter, Routes} from 'react-router-dom'
 import HomeContainer from "./Containers/HomeContainer";
+import MenuContainer from "./Containers/MenuContainer";
 
 
 export const history = createBrowserHistory()
@@ -10,8 +11,7 @@ const AppRouter = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<HomeContainer />}/>
-                <Route path="/menu-all-you-can-eat" element={<HomeContainer />}/>
-                <Route path="/menu-a-la-carte" element={<HomeContainer />}/>
+                <Route path="/menu/:type_id" element={<MenuContainer />}/>
             </Routes>
         </BrowserRouter>
     )

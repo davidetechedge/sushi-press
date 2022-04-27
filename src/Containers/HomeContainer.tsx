@@ -4,7 +4,7 @@ import allyoucaneat from '../Assets/Images/allyoucaneat.png'
 import alacarte from '../Assets/Images/alacarte.png'
 import logo from '../Assets/Images/logo.png'
 import ReusableCounter from "../Components/ReusableCounter";
-import {useEffect, useState} from "react";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../store";
 import { setOrderPeople, setOrderType } from "../store/actions/orders";
 import { OrderType } from "../store/types/orders";
@@ -58,7 +58,7 @@ const HomeContainer = () => {
 
     useEffect(() => {
         if ( typeof orderType !== "undefined" ) {
-            navigate(`/${orderType}`);
+            navigate(`/menu/${orderType}`);
         }
     }, [navigate, orderType])
 
