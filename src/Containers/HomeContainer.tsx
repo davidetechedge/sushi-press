@@ -58,7 +58,7 @@ const HomeContainer = () => {
 
     useEffect(() => {
         if ( typeof orderType !== "undefined" ) {
-            navigate(`/menu/${orderType}`);
+            navigate(`/menu`);
         }
     }, [navigate, orderType])
 

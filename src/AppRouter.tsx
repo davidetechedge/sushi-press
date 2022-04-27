@@ -11,7 +11,7 @@ const AppRouter = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<HomeContainer />}/>
-                <Route path="/menu/:type_id" element={<MenuContainer />}/>
+                <Route path="/menu" element={<MenuContainer />}/>
             </Routes>
         </BrowserRouter>
     )

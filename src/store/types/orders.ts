@@ -1,6 +1,6 @@
 export enum OrderType {
-    AYCE = "menu-all-you-can-eat",
-    CARTE = "menu-a-la-carte"
+    AYCE = "all-you-can-eat",
+    CARTE = "a-la-carte"
 }
 
 export type OrdersState = {

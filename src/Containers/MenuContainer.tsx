@@ -1,7 +1,8 @@
-import {Button, Drawer, List, ListItem, ListItemIcon, ListItemText, styled,} from "@mui/material";
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import {useParams} from "react-router-dom";
+import {Button, Drawer, List, ListItem, styled } from "@mui/material";
+import { useAppDispatch, useAppSelector } from "../store";
+import { resetOrder } from "../store/actions/orders";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const MyMenuContainer = styled('div')({
@@ -13,9 +14,15 @@ const drawerWidth = 300;
 
 
 const MenuContainer = () => {
-
-    const { type_id } = useParams();
-
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const { type: orderType } = useAppSelector(state => state.orders);
+    
+    useEffect(() => {
+        if ( typeof orderType === "undefined" ) {
+            navigate(`/`);
+        }
+    }, [navigate, orderType])
 
     return (
         <MyMenuContainer>
@@ -43,6 +50,8 @@ const MenuContainer = () => {
                         </ListItem>
                     ))}
                 </List>
+
+                <Button onClick={() => dispatch(resetOrder())}>Go back</Button>
             </Drawer>
         </MyMenuContainer>)
 }
