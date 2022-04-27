@@ -1,0 +1,280 @@
+[
+  {
+    "category": "hosomaki",
+    "items": [
+      {
+        "id": 1,
+        "name": "Avocado Maki",
+        "price": 4,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/avocado_maki.jpg",
+        "included": true
+      },
+      {
+        "id": 2,
+        "name": "Kunsei Maki",
+        "price": 5.2,
+        "img": "",
+        "included": true
+      },
+      {
+        "id": 3,
+        "name": "Sake Maki",
+        "price": 4.5,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/sake_maki.jpg",
+        "included": true
+      },
+      {
+        "id": 4,
+        "name": "Tekka Maki",
+        "price": 4.5,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/tekka_maki-400x400.jpg",
+        "included": true
+      },
+      {
+        "id": 5,
+        "name": "Sensei Maki",
+        "price": 5.5,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/sensei_maki.jpg",
+        "included": true
+      }
+    ]
+  },
+  {
+    "category": "soups",
+    "items": [
+      {
+        "id": 1,
+        "name": "Ebi Miso",
+        "price": 4,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/miso-ebi-400x400.jpg",
+        "included": true
+      },
+      {
+        "id": 2,
+        "name": "Edamame Cream Soup",
+        "price": 5,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/Edamame-Cream-Soup-400x400.jpg",
+        "included": true
+      },
+      {
+        "id": 3,
+        "name": "Laksa",
+        "price": 6.5,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/Laksa-1-400x400.jpg",
+        "included": true
+      },
+      {
+        "id": 4,
+        "name": "Nabe Udon",
+        "price": 7,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/nabe-udon-400x400.jpg",
+        "included": true
+      },
+      {
+        "id": 5,
+        "name": "Miso Shiro",
+        "price": 3,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/miso-shiro-400x400.jpg",
+        "included": true
+      }
+    ]
+  },
+  {
+    "category": "salads",
+    "items": [
+      {
+        "id": 1,
+        "name": "Chukka",
+        "price": 2.5,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/Chukka-salata-400x400.jpg",
+        "included": true
+      },
+      {
+        "id": 2,
+        "name": "Ebi Amai",
+        "price": 5.5,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/Ebi-Amai-400x400.jpg",
+        "included": true
+      },
+      {
+        "id": 3,
+        "name": "Edamame",
+        "price": 2.5,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/Edamame-400x400.jpg",
+        "included": true
+      }
+    ]
+  },
+  {
+    "category": "uramaki",
+    "items": [
+      {
+        "id": 1,
+        "name": "California Maki",
+        "price": 7.5,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/maki-california-400x400.jpg",
+        "included": true
+      },
+      {
+        "id": 2,
+        "name": "Ebi Crunch Maki",
+        "price": 9.5,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/maki-ebi-cruch-400x400.jpg",
+        "included": true
+      },
+      {
+        "id": 3,
+        "name": "Horenso Maki",
+        "price": 11.5,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/maki-horenso-400x400.jpg",
+        "included": true
+      },
+      {
+        "id": 4,
+        "name": "Maguro Maki",
+        "price": 6.5,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/maki-maguro-400x400.jpg",
+        "included": true
+      },
+      {
+        "id": 5,
+        "name": "Philadelphia Maki",
+        "price": 7.2,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/maki-philadelphia-400x400.jpg",
+        "included": true
+      },
+      {
+        "id": 6,
+        "name": "Wasabiko Maki",
+        "price": 5.5,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/maki-wasabiko-400x400.jpg",
+        "included": true
+      }
+    ]
+  },
+  {
+    "category": "sashimi",
+    "items": [
+      {
+        "id": 1,
+        "name": "Sake",
+        "price": 5.5,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/sake-sashimi-400x400.jpg",
+        "included": true
+      },
+      {
+        "id": 2,
+        "name": "Ume Set",
+        "price": 6,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/ume-set-400x400.jpg",
+        "included": true
+      },
+      {
+        "id": 3,
+        "name": "Unagi",
+        "price": 4.5,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/unagi-sashimi-400x400.jpg",
+        "included": true
+      }
+    ]
+  },
+  {
+    "category": "appetizers",
+    "items": [
+      {
+        "id": 1,
+        "name": "Ebi Tempura",
+        "price": 3.5,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/Ebi-tempura-400x400.jpg",
+        "included": true
+      },
+      {
+        "id": 2,
+        "name": "Yasai Tempura",
+        "price": 3.9,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/vegie-tempura-400x400.jpg",
+        "included": true
+      },
+      {
+        "id": 3,
+        "name": "Gyoza",
+        "price": 6.5,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/3db-gyoza-400x400.jpg",
+        "included": true
+      },
+      {
+        "id": 4,
+        "name": "Sake Tartare",
+        "price": 6.5,
+        "img": "",
+        "included": true
+      },
+      {
+        "id": 5,
+        "name": "Tuna Tartare",
+        "price": 5.7,
+        "img": "",
+        "included": true
+      }
+    ]
+  },
+  {
+    "category": "nigiri",
+    "items": [
+      {
+        "id": 1,
+        "name": "Ebi",
+        "price": 3.5,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/ebi-nigiri-1-400x400.jpg",
+        "included": true
+      },
+      {
+        "id": 2,
+        "name": "Sake",
+        "price": 4.5,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/sake-nigiri-1-400x400.jpg",
+        "included": true
+      },
+      {
+        "id": 3,
+        "name": "Tuna",
+        "price": 6.5,
+        "img": "",
+        "included": true
+      },
+      {
+        "id": 4,
+        "name": "Tako",
+        "price": 2.9,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/Tamago-nigiri-1-400x400.jpg",
+        "included": true
+      }
+    ]
+  },
+  {
+    "category": "drinks",
+    "items": [
+      {
+        "id": 1,
+        "name": "Asahi",
+        "price": 5,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/w_asahi1-400x400.jpg",
+        "included": false
+      },
+      {
+        "id": 2,
+        "name": "Mineral Water",
+        "price": 1.5,
+        "img": "https://www.planetsushi.hu/wp-content/uploads/w_NaturAqua_still_15PET_2014-400x400.jpg",
+        "included": false
+      },
+      {
+        "id": 3,
+        "name": "Sake",
+        "price": 4,
+        "img": "",
+        "included": false
+      }
+    ]
+  }
+]

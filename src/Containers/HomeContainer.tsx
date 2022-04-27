@@ -5,6 +5,7 @@ import alacarte from '../Assets/Images/alacarte.png'
 import logo from '../Assets/Images/logo.png'
 import ReusableCounter from "../Components/ReusableCounter";
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 const MyHomeContainer = styled('div')({
     display: 'flex',
@@ -50,6 +51,8 @@ const FooterTextContainer =styled('div')({
 const HomeContainer = () => {
 
     const [peopleCounter, setPeopleCounter] = useState<number>(1)
+    let navigate = useNavigate();
+
 
     const onClickRemove = () => {
         if(peopleCounter > 1)
@@ -67,12 +70,12 @@ const HomeContainer = () => {
             <ReusableBox
                 imgUrl={allyoucaneat}
                 label={"All you can eat *"}
-                onClick={()=>{}}
+                onClick={()=>navigate("/menu/all-you-can-eat")}
             />
             <ReusableBox
                 imgUrl={alacarte}
                 label={"A la carte **"}
-                onClick={()=>{}}
+                onClick={()=>navigate("/menu/a-la-carte")}
             />
         </FlexContainerBoxes>
         <FlexContainerCounter>
