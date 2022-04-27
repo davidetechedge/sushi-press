@@ -1,9 +1,9 @@
 export enum OrderType {
-    AYCE,
-    CARTE
+    AYCE = "menu-all-you-can-eat",
+    CARTE = "menu-a-la-carte"
 }
 
 export type OrdersState = {
-    people?: number,
+    people: number,
     type?: OrderType
 }

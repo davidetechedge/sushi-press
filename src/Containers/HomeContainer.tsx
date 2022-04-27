@@ -4,7 +4,11 @@ import allyoucaneat from '../Assets/Images/allyoucaneat.png'
 import alacarte from '../Assets/Images/alacarte.png'
 import logo from '../Assets/Images/logo.png'
 import ReusableCounter from "../Components/ReusableCounter";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import { useAppDispatch, useAppSelector } from "../store";
+import { setOrderPeople, setOrderType } from "../store/actions/orders";
+import { OrderType } from "../store/types/orders";
+import { useNavigate } from "react-router-dom";
 
 const MyHomeContainer = styled('div')({
     display: 'flex',
@@ -48,42 +52,43 @@ const FooterTextContainer =styled('div')({
 });
 
 const HomeContainer = () => {
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const { people: peopleCounter,  type: orderType } = useAppSelector(state => state.orders);
 
-    const [peopleCounter, setPeopleCounter] = useState<number>(1)
-
-    const onClickRemove = () => {
-        if(peopleCounter > 1)
-            setPeopleCounter(peopleCounter - 1)
-    }
-
+    useEffect(() => {
+        if ( typeof orderType !== "undefined" ) {
+            navigate(`/${orderType}`);
+        }
+    }, [navigate, orderType])
 
     return (
         <MyHomeContainer>
-        <LogoContainer>
-            <img src={logo} style={{maxWidth: '30%', height: 'auto'}}/>
-        </LogoContainer>
-    <ItemsContainer>
-        <FlexContainerBoxes>
-            <ReusableBox
-                imgUrl={allyoucaneat}
-                label={"All you can eat *"}
-                onClick={()=>{}}
-            />
-            <ReusableBox
-                imgUrl={alacarte}
-                label={"A la carte **"}
-                onClick={()=>{}}
-            />
-        </FlexContainerBoxes>
-        <FlexContainerCounter>
-            <ReusableCounter
-                label={'PEOPLE'}
-                counter={peopleCounter}
-                onClickAdd={() => setPeopleCounter(peopleCounter + 1)}
-                onClickRemove={onClickRemove}
-            />
-        </FlexContainerCounter>
-        </ItemsContainer>
+            <LogoContainer>
+                <img src={logo} style={{maxWidth: '30%', height: 'auto'}} alt="SushiPress Logo" />
+            </LogoContainer>
+            <ItemsContainer>
+                <FlexContainerBoxes>
+                    <ReusableBox
+                        imgUrl={allyoucaneat}
+                        label={"All you can eat *"}
+                        onClick={() => dispatch(setOrderType(OrderType.AYCE))}
+                    />
+                    <ReusableBox
+                        imgUrl={alacarte}
+                        label={"A la carte **"}
+                        onClick={() => dispatch(setOrderType(OrderType.CARTE))}
+                    />
+                </FlexContainerBoxes>
+                <FlexContainerCounter>
+                    <ReusableCounter
+                        label={'PEOPLE'}
+                        counter={peopleCounter}
+                        onClickAdd={() => dispatch(setOrderPeople(peopleCounter + 1))}
+                        onClickRemove={() => dispatch(setOrderPeople(peopleCounter - 1))}
+                    />
+                </FlexContainerCounter>
+            </ItemsContainer>
             <FooterTextContainer>
                 <h5>{'* All you can eat menu has a fixed cost of 24,99€ per person'}</h5>
                 <h5>{'** Á la carte menu has a fixed cost of 2,50€ per person'}</h5>
