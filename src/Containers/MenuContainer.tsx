@@ -1,8 +1,9 @@
 import {Button, Drawer, List, ListItem, styled } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../store";
 import { resetOrder } from "../store/actions/orders";
-import { useEffect } from "react";
+import {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
+import CommonDrawer from "../Components/CommonDrawer";
 
 
 const MyMenuContainer = styled('div')({
@@ -10,13 +11,12 @@ const MyMenuContainer = styled('div')({
     justifyContent: 'center'
 });
 
-const drawerWidth = 300;
-
 
 const MenuContainer = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const { type: orderType } = useAppSelector(state => state.orders);
+    const { type: orderType, menu } = useAppSelector(state => state.orders);
+    const [menuCategories, setMenuCategories] = useState<string[]>([])
     
     useEffect(() => {
         if ( typeof orderType === "undefined" ) {
@@ -24,35 +24,14 @@ const MenuContainer = () => {
         }
     }, [navigate, orderType])
 
+    useEffect(() => {
+        if(menu.data && menu.data.length > 0)
+            setMenuCategories(menu.data.map (elem => elem.category))
+    }, [menu])
+
     return (
         <MyMenuContainer>
-            <Drawer
-                sx={{
-                    width: drawerWidth,
-                    flexShrink: 0,
-                    '& .MuiDrawer-paper': {
-                        width: drawerWidth,
-                        boxSizing: 'border-box',
-                    },
-                    '& .MuiListItem-root': {
-                        justifyContent: 'center',
-                    }
-                }}
-                variant="permanent"
-                anchor="left"
-            >
-                <List>
-                    {['hosomaki', 'soups', 'salads', 'uramaki'].map((text, index) => (
-                        <ListItem key={text}>
-                            <Button variant="outlined" disabled>
-                                {text}
-                            </Button>
-                        </ListItem>
-                    ))}
-                </List>
-
-                <Button onClick={() => dispatch(resetOrder())}>Go back</Button>
-            </Drawer>
+            <CommonDrawer items={menuCategories} goBack={() => dispatch(resetOrder())}/>
         </MyMenuContainer>)
 }
 
