@@ -7,6 +7,7 @@ interface CommonDrawerProps {
     items: string[]
     goBack : () => void
     type: string
+    onClickCategory : (cat: string) => void
 }
 
 const CustomList = styled(List)({
@@ -51,9 +52,9 @@ function CommonDrawer(props: CommonDrawerProps ) {
             anchor="left"
         >
             <CustomList>
-                {props.items.map((text, index) => (
+                {props.items.map((text) => (
                     <ListItem key={text}>
-                        <CustomButton variant="outlined" disabled>
+                        <CustomButton variant="outlined" onClick={() => props.onClickCategory(text)}>
                             {text.toUpperCase()}
                         </CustomButton>
                     </ListItem>

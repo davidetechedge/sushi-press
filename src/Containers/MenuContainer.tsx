@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import CommonDrawer from "../Components/CommonDrawer";
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import * as React from "react";
+import {MenuCategoryItem} from "../store/types/orders";
+import ReusableBox from "../Components/ReusableBox";
 
 
 const MyMenuContainer = styled('div')({
@@ -41,6 +43,7 @@ const MenuContainer = () => {
     const { type: orderType, menu } = useAppSelector(state => state.orders);
     const [menuCategories, setMenuCategories] = useState<string[]>([])
     const [cartValue, setCartValue] = useState<string>('')
+    const [menuItems, setMenuItems] = useState<MenuCategoryItem[]>([])
     
     useEffect(() => {
         if ( typeof orderType === "undefined" ) {
@@ -60,6 +63,12 @@ const MenuContainer = () => {
             setCartValue('2,50 €')
     }, [orderType])
 
+    const onClickCategory = (cat: string) => {
+        console.log(cat, menu.data?.find((elem) => elem.category === cat)?.items)
+        setMenuItems(menu?.data?.find((elem) => elem.category === cat)?.items || [])
+        navigate(`/menu/`+ cat);
+    }
+
     return (
         <MyMenuContainer>
             <FixedHeaderContainer>
@@ -72,7 +81,9 @@ const MenuContainer = () => {
                     <LocalGroceryStoreIcon fontSize={'large'} />
                 </IconButton>
             </FixedHeaderContainer>
-            <CommonDrawer items={menuCategories} goBack={() => dispatch(resetOrder())} type={orderType || ""}/>
+            <CommonDrawer items={menuCategories} goBack={() => dispatch(resetOrder())} type={orderType || ""} onClickCategory={onClickCategory}/>
+            {menuItems.map((item) => (
+                <ReusableBox imgUrl={item.img} label={item.name} onClick={() => {}}/>))}
         </MyMenuContainer>)
 }
 
