@@ -9,32 +9,39 @@ interface CommonDrawerProps {
     type: string
     onClickCategory : (cat: string) => void
 }
+interface DivProps {
+    active: boolean;
+};
 
 const CustomList = styled(List)({
     margin: '40px 0 50px 0'
 });
 
-const CustomButton = styled(ButtonUnstyled)`
-    font-weight: bold;
-    font-size: 0.875rem;
-    color: #282828;
-    width: 260px;
-    border-radius: 10px;
-    background-color: #F8F8F8;
-    padding: 12px 24px;
-    cursor: pointer;
-    border: none;
-    &:hover {
-        background-color: #C9C9C9;
-    },
-    &.${buttonUnstyledClasses.active} {
-      background-color: #C9C9C9;
+const CustomButton = styled(ButtonUnstyled)<DivProps>(({ theme, active }) => ({
+    fontWeight: 'bold',
+    fontSize: '0.875rem',
+    color: '#282828',
+    width: '260px',
+    borderRadius: '10px',
+    backgroundColor: '#F8F8F8',
+    padding: '12px 24px',
+    cursor: 'pointer',
+    border: 'none',
+    '&:hover': {
+        backgroundColor: '#C9C9C9'
     }
-`;
+}));
 
 const drawerWidth = 300;
 
 function CommonDrawer(props: CommonDrawerProps ) {
+
+    /*const [activeCategory, setActiveCategory] = useState()
+
+    const onClickButton = (cat: string )=> {
+
+    }*/
+
     return (
         <Drawer
             sx={{
@@ -54,7 +61,7 @@ function CommonDrawer(props: CommonDrawerProps ) {
             <CustomList>
                 {props.items.map((text) => (
                     <ListItem key={text}>
-                        <CustomButton variant="outlined" onClick={() => props.onClickCategory(text)}>
+                        <CustomButton variant="outlined" active={false} onClick={() => props.onClickCategory(text)}>
                             {text.toUpperCase()}
                         </CustomButton>
                     </ListItem>

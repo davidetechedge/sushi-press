@@ -1,6 +1,6 @@
-import {IconButton, InputAdornment, InputBase, styled} from "@mui/material";
+import {Grid, IconButton, InputAdornment, InputBase, styled} from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../store";
-import { resetOrder } from "../store/actions/orders";
+import {resetOrder, setOrderPeople} from "../store/actions/orders";
 import {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import CommonDrawer from "../Components/CommonDrawer";
@@ -8,9 +8,23 @@ import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import * as React from "react";
 import {MenuCategoryItem} from "../store/types/orders";
 import ReusableBox from "../Components/ReusableBox";
+import ReusableCounter from "../Components/ReusableCounter";
 
 
 const MyMenuContainer = styled('div')({
+    display: 'flex',
+    justifyContent: 'center'
+});
+
+const RightMenuContainer = styled('div')({
+    margin: '50px',
+    display: 'block',
+    width: '1000px',
+    height: '1000px',
+
+})
+
+const FlexContainerCounter = styled('div')({
     display: 'flex',
     justifyContent: 'center'
 });
@@ -82,8 +96,28 @@ const MenuContainer = () => {
                 </IconButton>
             </FixedHeaderContainer>
             <CommonDrawer items={menuCategories} goBack={() => dispatch(resetOrder())} type={orderType || ""} onClickCategory={onClickCategory}/>
-            {menuItems.map((item) => (
-                <ReusableBox imgUrl={item.img} label={item.name} onClick={() => {}}/>))}
+            <RightMenuContainer>
+                <Grid container
+                    direction="row"
+                    spacing={4}
+                    alignItems="flex-start"
+                    justifyContent="center"
+                    style={{ minHeight: '1000px' }}>
+                {menuItems.map((item, index) => (
+                        <Grid item key={index}>
+                            <ReusableBox imgUrl={item.img} label={item.name} onClick={() => {}}/>
+                            <FlexContainerCounter>
+                                <ReusableCounter
+                                    label={'QUANTITY'}
+                                    counter={0}
+                                    onClickAdd={() => {}}
+                                    onClickRemove={() => {}}
+                                />
+                            </FlexContainerCounter>
+                        </Grid>
+                    ))}
+                </Grid>
+            </RightMenuContainer>
         </MyMenuContainer>)
 }
 
