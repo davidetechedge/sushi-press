@@ -1,6 +1,8 @@
 import * as React from 'react';
 import {Button, Drawer, List, ListItem, styled} from "@mui/material";
 import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
+import {useLocation} from "react-router-dom";
+import {useEffect, useState} from "react";
 
 
 interface CommonDrawerProps {
@@ -11,7 +13,7 @@ interface CommonDrawerProps {
 }
 interface DivProps {
     active: boolean;
-};
+}
 
 const CustomList = styled(List)({
     margin: '40px 0 50px 0'
@@ -23,7 +25,7 @@ const CustomButton = styled(ButtonUnstyled)<DivProps>(({ theme, active }) => ({
     color: '#282828',
     width: '260px',
     borderRadius: '10px',
-    backgroundColor: '#F8F8F8',
+    backgroundColor: active ? '#C9C9C9' : '#F8F8F8',
     padding: '12px 24px',
     cursor: 'pointer',
     border: 'none',
@@ -36,11 +38,14 @@ const drawerWidth = 300;
 
 function CommonDrawer(props: CommonDrawerProps ) {
 
-    /*const [activeCategory, setActiveCategory] = useState()
+    const location = useLocation();
+    const [activeCategory, setActiveCategory] = useState<string>('')
 
-    const onClickButton = (cat: string )=> {
-
-    }*/
+    useEffect(() => {
+        const pathArray = location.pathname.split('/')
+        console.log(pathArray[pathArray.length-1])
+        setActiveCategory(pathArray[pathArray.length-1])
+    }, [location])
 
     return (
         <Drawer
@@ -61,7 +66,7 @@ function CommonDrawer(props: CommonDrawerProps ) {
             <CustomList>
                 {props.items.map((text) => (
                     <ListItem key={text}>
-                        <CustomButton variant="outlined" active={false} onClick={() => props.onClickCategory(text)}>
+                        <CustomButton variant="outlined" active={text === activeCategory} onClick={() => props.onClickCategory(text)}>
                             {text.toUpperCase()}
                         </CustomButton>
                     </ListItem>

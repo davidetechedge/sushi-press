@@ -67,8 +67,13 @@ const MenuContainer = () => {
 
     useEffect(() => {
         if(menu.data && menu.data.length > 0)
-            setMenuCategories(menu.data.map (elem => elem.category))
+            setMenuCategories(menu.data.map(elem => elem.category))
     }, [menu])
+
+    useEffect(() => {
+        if(menuCategories.length >0)
+            onClickCategory(menuCategories[0])
+    }, [menuCategories])
 
     useEffect(() => {
         if(orderType && orderType==='all-you-can-eat')
@@ -95,7 +100,11 @@ const MenuContainer = () => {
                     <LocalGroceryStoreIcon fontSize={'large'} />
                 </IconButton>
             </FixedHeaderContainer>
-            <CommonDrawer items={menuCategories} goBack={() => dispatch(resetOrder())} type={orderType || ""} onClickCategory={onClickCategory}/>
+            <CommonDrawer
+                items={menuCategories}
+                goBack={() => dispatch(resetOrder())}
+                type={orderType || ""}
+                onClickCategory={onClickCategory}/>
             <RightMenuContainer>
                 <Grid container
                     direction="row"
@@ -105,7 +114,12 @@ const MenuContainer = () => {
                     style={{ minHeight: '1000px' }}>
                 {menuItems.map((item, index) => (
                         <Grid item key={index}>
-                            <ReusableBox imgUrl={item.img} label={item.name} onClick={() => {}}/>
+                            <ReusableBox
+                                imgUrl={item.img}
+                                label={item.name}
+                                onClick={() => {}}
+                                greyLabel
+                            />
                             <FlexContainerCounter>
                                 <ReusableCounter
                                     label={'QUANTITY'}

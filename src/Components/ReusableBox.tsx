@@ -6,18 +6,22 @@ interface ReusableBoxProps {
     imgUrl: string
     label: string
     onClick: () => void
+    greyLabel: boolean
+}
+interface DivProps {
+    greyLabel: boolean;
 }
 
-const LabelContainer = styled('div')({
-    backgroundColor: '#FFFFFF',
+const LabelContainer = styled('div')<DivProps>(({ theme, greyLabel }) => ({
+    backgroundColor: greyLabel ? '#E3E3E3' : '#FFFFFF',
     width: '100%',
-    height: '50px',
+    height: greyLabel ? '30px' : '50px',
     borderBottomLeftRadius: '10px',
     borderBottomRightRadius: '10px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-});
+}));
 
 function ReusableBox(props: ReusableBoxProps ) {
     return (
@@ -37,7 +41,7 @@ function ReusableBox(props: ReusableBoxProps ) {
             }}
         onClick={props.onClick}
         >
-            <LabelContainer>
+            <LabelContainer greyLabel={props.greyLabel}>
                 <h3>{props.label}</h3>
             </LabelContainer>
         </Box>
