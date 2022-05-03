@@ -9,6 +9,7 @@ import * as React from "react";
 import {MenuCategoryItem} from "../store/types/orders";
 import ReusableBox from "../Components/ReusableBox";
 import ReusableCounter from "../Components/ReusableCounter";
+import ButtonUnstyled from "@mui/base/ButtonUnstyled";
 
 
 const MyMenuContainer = styled('div')({
@@ -48,6 +49,21 @@ const CustomizedInput = styled(InputBase)({
         fontWeight: 'bold'
     },
 
+});
+
+const CustomButton = styled(ButtonUnstyled)({
+    fontWeight: 'bold',
+    fontSize: '0.875rem',
+    color: '#282828',
+    width: '200px',
+    borderRadius: '10px',
+    backgroundColor:  '#C9C9C9',
+    padding: '12px 24px',
+    cursor: 'pointer',
+    border: 'none',
+    '&:hover': {
+        backgroundColor: '#C9C9C9'
+    }
 });
 
 
@@ -127,6 +143,11 @@ const MenuContainer = () => {
                                     onClickAdd={() => {}}
                                     onClickRemove={() => {}}
                                 />
+                            </FlexContainerCounter>
+                            <FlexContainerCounter>
+                            <CustomButton variant="outlined" onClick={() => {}}>
+                                ADD TO CART
+                            </CustomButton>
                             </FlexContainerCounter>
                         </Grid>
                     ))}
