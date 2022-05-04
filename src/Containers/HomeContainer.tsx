@@ -41,7 +41,8 @@ const FlexContainerBoxes = styled('div')({
 
 const FlexContainerCounter = styled('div')({
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginTop: '10px',
 });
 
 const FooterTextContainer =styled('div')({

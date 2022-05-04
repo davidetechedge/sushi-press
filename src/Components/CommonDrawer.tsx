@@ -25,7 +25,7 @@ const CustomButton = styled(ButtonUnstyled)<DivProps>(({ theme, active }) => ({
     color: '#282828',
     width: '260px',
     borderRadius: '10px',
-    backgroundColor: active ? '#C9C9C9' : '#F8F8F8',
+    backgroundColor: active ? '#D3CD00' : '#F8F8F8',
     padding: '12px 24px',
     cursor: 'pointer',
     border: 'none',

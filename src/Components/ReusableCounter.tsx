@@ -12,7 +12,6 @@ interface ReusableCounterProps {
 
 const CounterContainer = styled('div')({
     textAlign: "center",
-    marginTop: '10px'
 });
 
 const CustomizedInput = styled(InputBase)({

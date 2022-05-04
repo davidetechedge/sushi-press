@@ -52,12 +52,13 @@ const CustomizedInput = styled(InputBase)({
 });
 
 const CustomButton = styled(ButtonUnstyled)({
+    marginTop: '30px',
     fontWeight: 'bold',
     fontSize: '0.875rem',
     color: '#282828',
     width: '200px',
     borderRadius: '10px',
-    backgroundColor:  '#C9C9C9',
+    backgroundColor:  '#D3CD00',
     padding: '12px 24px',
     cursor: 'pointer',
     border: 'none',
@@ -135,11 +136,12 @@ const MenuContainer = () => {
                                 label={item.name}
                                 onClick={() => {}}
                                 greyLabel
+                                price={item.price}
                             />
                             <FlexContainerCounter>
                                 <ReusableCounter
                                     label={'QUANTITY'}
-                                    counter={0}
+                                    counter={1}
                                     onClickAdd={() => {}}
                                     onClickRemove={() => {}}
                                 />
