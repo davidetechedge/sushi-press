@@ -63,7 +63,7 @@ function ReusableBox(props: ReusableBoxProps ) {
         >
             {props.price && <FixedPriceContainer>
                 <CustomizedInput
-                    value={props.price.toString() + '€'}
+                    value={props.price.toFixed(2) + '€'}
                     id="counter-input"
                     readOnly
                 />

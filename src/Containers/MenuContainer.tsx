@@ -7,9 +7,7 @@ import CommonDrawer from "../Components/CommonDrawer";
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import * as React from "react";
 import {MenuCategoryItem} from "../store/types/orders";
-import ReusableBox from "../Components/ReusableBox";
-import ReusableCounter from "../Components/ReusableCounter";
-import ButtonUnstyled from "@mui/base/ButtonUnstyled";
+import { OrderItem } from "../Components/OrderItem";
 
 
 const MyMenuContainer = styled('div')({
@@ -24,11 +22,6 @@ const RightMenuContainer = styled('div')({
     height: '1000px',
 
 })
-
-const FlexContainerCounter = styled('div')({
-    display: 'flex',
-    justifyContent: 'center'
-});
 
 const FixedHeaderContainer =styled('div')({
     position: 'fixed',
@@ -49,22 +42,6 @@ const CustomizedInput = styled(InputBase)({
         fontWeight: 'bold'
     },
 
-});
-
-const CustomButton = styled(ButtonUnstyled)({
-    marginTop: '30px',
-    fontWeight: 'bold',
-    fontSize: '0.875rem',
-    color: '#282828',
-    width: '200px',
-    borderRadius: '10px',
-    backgroundColor:  '#D3CD00',
-    padding: '12px 24px',
-    cursor: 'pointer',
-    border: 'none',
-    '&:hover': {
-        backgroundColor: '#C9C9C9'
-    }
 });
 
 
@@ -113,7 +90,7 @@ const MenuContainer = () => {
                     id="counter-input"
                     readOnly
                 />
-                <IconButton aria-label="cart" sx={{ color: '#282828' }} onClick={()=>{}}>
+                <IconButton aria-label="cart" sx={{ color: '#282828' }} onClick={()=> navigate("/cart") }>
                     <LocalGroceryStoreIcon fontSize={'large'} />
                 </IconButton>
             </FixedHeaderContainer>
@@ -129,29 +106,8 @@ const MenuContainer = () => {
                     alignItems="flex-start"
                     justifyContent="center"
                     style={{ minHeight: '1000px' }}>
-                {menuItems.map((item, index) => (
-                        <Grid item key={index}>
-                            <ReusableBox
-                                imgUrl={item.img}
-                                label={item.name}
-                                onClick={() => {}}
-                                greyLabel
-                                price={item.price}
-                            />
-                            <FlexContainerCounter>
-                                <ReusableCounter
-                                    label={'QUANTITY'}
-                                    counter={1}
-                                    onClickAdd={() => {}}
-                                    onClickRemove={() => {}}
-                                />
-                            </FlexContainerCounter>
-                            <FlexContainerCounter>
-                            <CustomButton variant="outlined" onClick={() => {}}>
-                                ADD TO CART
-                            </CustomButton>
-                            </FlexContainerCounter>
-                        </Grid>
+                {menuItems.map((item) => (
+                        <OrderItem key={JSON.stringify(item)} data={item} />
                     ))}
                 </Grid>
             </RightMenuContainer>

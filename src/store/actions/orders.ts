@@ -1,6 +1,6 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { MenuCategories, OrderType } from "../types/orders";
+import { MenuCategories, OrderItem, OrderType } from "../types/orders";
 
 export const setOrderPeople = createAction<number>('orders/setOrderPeople');
 
@@ -16,3 +16,7 @@ export const getMenu = createAsyncThunk<MenuCategories[]>(
         return response.data;
     }
 )
+
+export const addOrderItem = createAction<OrderItem>('orders/addOrderItem');
+
+export const removeOrderItem = createAction<number>('orders/removeOrderItem');

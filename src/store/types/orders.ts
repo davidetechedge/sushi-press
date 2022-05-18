@@ -18,8 +18,13 @@ export type MenuCategoryItem = {
     included: boolean
 }
 
+export type OrderItem = MenuCategoryItem & { 
+    quantity: number
+};
+
 export type OrdersState = {
     people: number,
     type?: OrderType,
-    menu: APIData<MenuCategories[]>
+    menu: APIData<MenuCategories[]>,
+    items: OrderItem[]
 }

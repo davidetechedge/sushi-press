@@ -1,11 +1,12 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { getMenu, resetOrder, setOrderPeople, setOrderType } from "../actions/orders";
+import { addOrderItem, getMenu, removeOrderItem, resetOrder, setOrderPeople, setOrderType } from "../actions/orders";
 import { APIError, APIStatus, InternalError } from "../axiosConfiguration";
 import { OrdersState } from "../types/orders";
 
 export const initialState: OrdersState = {
     people: 1,
-    menu: { status: APIStatus.IDLE }
+    menu: { status: APIStatus.IDLE },
+    items: []
 }
 
 export default createReducer(initialState, (builder) => {
@@ -19,6 +20,15 @@ export default createReducer(initialState, (builder) => {
         .addCase(resetOrder, (state) => {
             state.people = 1;
             state.type = undefined;
+        })
+        .addCase(addOrderItem, (state, action) => {
+            state.items = [ ...state.items, action.payload ];
+        })
+        .addCase(removeOrderItem, (state, action) => {
+            let updatedList = [ ...state.items ];
+            
+            updatedList.splice(action.payload, 1);
+            state.items = updatedList;
         })
 
     builder
