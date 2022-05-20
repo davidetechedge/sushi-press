@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Button, Drawer, List, ListItem, styled} from "@mui/material";
-import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
+import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 import {useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 
@@ -12,7 +12,7 @@ interface CommonDrawerProps {
     onClickCategory : (cat: string) => void
 }
 interface DivProps {
-    active: boolean;
+    active: "true" | "false";
 }
 
 const CustomList = styled(List)({
@@ -25,7 +25,7 @@ const CustomButton = styled(ButtonUnstyled)<DivProps>(({ theme, active }) => ({
     color: '#282828',
     width: '260px',
     borderRadius: '10px',
-    backgroundColor: active ? '#D3CD00' : '#F8F8F8',
+    backgroundColor: active === "true" ? '#D3CD00' : '#F8F8F8',
     padding: '12px 24px',
     cursor: 'pointer',
     border: 'none',
@@ -66,7 +66,7 @@ function CommonDrawer(props: CommonDrawerProps ) {
             <CustomList>
                 {props.items.map((text) => (
                     <ListItem key={text}>
-                        <CustomButton variant="outlined" active={text === activeCategory} onClick={() => props.onClickCategory(text)}>
+                        <CustomButton variant="outlined" active={text === activeCategory ? "true" : "false"} onClick={() => props.onClickCategory(text)}>
                             {text.toUpperCase()}
                         </CustomButton>
                     </ListItem>

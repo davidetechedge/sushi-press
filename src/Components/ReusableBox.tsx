@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import {InputBase, styled, Typography} from "@mui/material";
+import {styled, Typography} from "@mui/material";
 
 interface ReusableBoxProps {
     imgUrl: string,
@@ -12,17 +12,17 @@ interface ReusableBoxProps {
     price?: number
 }
 interface DivProps {
-    greyLabel: boolean;
-    squared?: boolean;
+    greylabel?: "true" | "false";
+    squared?: "true" | "false";
 }
 
-const LabelContainer = styled('div')<DivProps>(({ theme, greyLabel, squared }) => ({
-    backgroundColor: greyLabel ? '#E3E3E3' : '#FFFFFF',
+const LabelContainer = styled('div')<DivProps>((props) => ({
+    backgroundColor: props.greylabel === "true" ? '#E3E3E3' : '#FFFFFF',
     width: '100%',
-    borderBottomLeftRadius: squared ? 0 : '10px',
-    borderBottomRightRadius: squared ? 0 : '10px',
+    borderBottomLeftRadius: props.squared === "true" ? 0 : '10px',
+    borderBottomRightRadius: props.squared === "true" ? 0 : '10px',
     position: 'sticky',
-    lineHeight: greyLabel ? 0 : '10px',
+    lineHeight: props.greylabel === "true" ? 0 : '10px',
     textAlign: 'center'
 }));
 
@@ -55,7 +55,7 @@ function ReusableBox(props: ReusableBoxProps ) {
                 alignItems: 'flex-end',
                 position: 'relative'
             }}
-        onClick={props.onClick}
+            onClick={props.onClick}
         >
             {typeof props.price !== "undefined" && (
                 <FixedPriceContainer>
@@ -64,7 +64,7 @@ function ReusableBox(props: ReusableBoxProps ) {
                     </Typography>
                 </FixedPriceContainer>
             )}
-            <LabelContainer greyLabel={props.greyLabel} squared={props.squared}>
+            <LabelContainer greylabel={props.greyLabel ? "true" : "false"} squared={props.squared ? "true" : "false"}>
                 <h3 style={{marginTop: props.greyLabel? '15px' : ''}}>{props.label}</h3>
             </LabelContainer>
         </Box>

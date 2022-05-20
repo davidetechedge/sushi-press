@@ -1,7 +1,7 @@
-import {Grid, IconButton, InputAdornment, InputBase, styled} from "@mui/material";
+import {Grid, IconButton, InputBase, styled} from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../store";
-import {resetOrder, setOrderPeople} from "../store/actions/orders";
-import {useEffect, useState} from "react";
+import {resetOrder} from "../store/actions/orders";
+import {useCallback, useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import CommonDrawer from "../Components/CommonDrawer";
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
@@ -17,8 +17,8 @@ const MyMenuContainer = styled('div')({
 
 const RightMenuContainer = styled('div')({
     margin: '80px 50px',
-    display: 'block'
-
+    display: 'block',
+    width: '100%'
 })
 
 const FixedHeaderContainer =styled('div')({
@@ -51,6 +51,11 @@ const MenuContainer = () => {
     const [cartValue, setCartValue] = useState<string>('')
     const [menuItems, setMenuItems] = useState<MenuCategoryItem[]>([])
     
+    const onClickCategory = useCallback((cat: string) => {
+        setMenuItems(menu?.data?.find((elem) => elem.category === cat)?.items || [])
+        navigate(`/menu/`+ cat);
+    }, [menu?.data, navigate])
+
     useEffect(() => {
         if ( typeof orderType === "undefined" ) {
             navigate(`/`);
@@ -63,9 +68,9 @@ const MenuContainer = () => {
     }, [menu])
 
     useEffect(() => {
-        if(menuCategories.length >0)
+        if(menuCategories.length > 0 && !menuItems.length )
             onClickCategory(menuCategories[0])
-    }, [menuCategories])
+    }, [menuCategories, menuItems.length, onClickCategory])
 
     useEffect(() => {
         if(orderType && orderType==='all-you-can-eat')
@@ -73,12 +78,6 @@ const MenuContainer = () => {
         else
             setCartValue('2,50 €')
     }, [orderType])
-
-    const onClickCategory = (cat: string) => {
-        console.log(cat, menu.data?.find((elem) => elem.category === cat)?.items)
-        setMenuItems(menu?.data?.find((elem) => elem.category === cat)?.items || [])
-        navigate(`/menu/`+ cat);
-    }
 
     return (
         <MyMenuContainer>
@@ -102,8 +101,7 @@ const MenuContainer = () => {
                     direction="row"
                     spacing={4}
                     alignItems="flex-start"
-                    justifyContent="center"
-                    style={{ minHeight: '1000px' }}>
+                    justifyContent="left">
                 {menuItems.map((item) => (
                         <OrderItem key={JSON.stringify(item)} data={item} />
                     ))}
