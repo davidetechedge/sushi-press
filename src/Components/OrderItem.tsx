@@ -1,10 +1,10 @@
 import { Grid, styled } from '@mui/material';
 import React, { useState } from 'react';
-import { MenuCategoryItem } from "../store/types/orders"
+import { MenuCategoryItem, OrderType } from "../store/types/orders"
 import ReusableBox from './ReusableBox';
 import ReusableCounter from "./ReusableCounter";
 import ButtonUnstyled from "@mui/base/ButtonUnstyled";
-import { useAppDispatch } from '../store';
+import { useAppDispatch, useAppSelector } from '../store';
 import { addOrderItem } from '../store/actions/orders';
 
 const FlexContainerCounter = styled('div')({
@@ -28,6 +28,19 @@ const CustomButton = styled(ButtonUnstyled)({
     }
 });
 
+const OrderContainer = styled('div')({
+    padding: 8,
+    paddingTop: 0,
+    borderRadius: 16,
+    backgroundColor: '#fff',
+    overflow: 'hidden'
+});
+
+const OrderHeader = styled('div')({
+    margin: -38,
+    marginBottom: 0
+})
+
 export type OrderItemProps = {
     data: MenuCategoryItem
 }
@@ -35,6 +48,7 @@ export type OrderItemProps = {
 export const OrderItem: React.VFC<OrderItemProps> = ({ data }) => {
     const [ quantity, setQuantity ] = useState<number>(1);
     const dispatch = useAppDispatch();
+    const { type } = useAppSelector(state => state.orders)
 
     const addOrder = () => {
         dispatch(addOrderItem({
@@ -44,26 +58,31 @@ export const OrderItem: React.VFC<OrderItemProps> = ({ data }) => {
     }
     return (
         <Grid item>
-            <ReusableBox
-                imgUrl={data.img}
-                label={data.name}
-                onClick={() => {}}
-                greyLabel
-                price={data.price}
-            />
-            <FlexContainerCounter>
-                <ReusableCounter
-                    label={'QUANTITY'}
-                    counter={quantity}
-                    onClickAdd={() => setQuantity(counter => counter + 1)}
-                    onClickRemove={() => setQuantity(counter => Math.max(1, counter - 1))}
-                />
-            </FlexContainerCounter>
-            <FlexContainerCounter>
-                <CustomButton variant="outlined" onClick={addOrder}>
-                    ADD TO CART
-                </CustomButton>
-            </FlexContainerCounter>
+            <OrderContainer>
+                <OrderHeader>
+                    <ReusableBox
+                        imgUrl={data.img}
+                        label={data.name}
+                        onClick={() => {}}
+                        greyLabel
+                        price={(type === OrderType.AYCE && data.included) ? 0 : data.price}
+                        squared
+                    />
+                </OrderHeader>
+                <FlexContainerCounter>
+                    <ReusableCounter
+                        label={'QUANTITY'}
+                        counter={quantity}
+                        onClickAdd={() => setQuantity(counter => counter + 1)}
+                        onClickRemove={() => setQuantity(counter => Math.max(1, counter - 1))}
+                    />
+                </FlexContainerCounter>
+                <FlexContainerCounter>
+                    <CustomButton variant="outlined" onClick={addOrder}>
+                        ADD TO CART
+                    </CustomButton>
+                </FlexContainerCounter>
+            </OrderContainer>
         </Grid>
     );
 }

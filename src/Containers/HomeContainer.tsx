@@ -76,12 +76,14 @@ const HomeContainer = () => {
             <ItemsContainer>
                 <FlexContainerBoxes>
                     <ReusableBox
+                        allowClick
                         imgUrl={allyoucaneat}
                         label={"All you can eat *"}
                         onClick={() => dispatch(setOrderType(OrderType.AYCE))}
                         greyLabel={false}
                     />
                     <ReusableBox
+                        allowClick
                         imgUrl={alacarte}
                         label={"A la carte **"}
                         onClick={() => dispatch(setOrderType(OrderType.CARTE))}

@@ -16,10 +16,8 @@ const MyMenuContainer = styled('div')({
 });
 
 const RightMenuContainer = styled('div')({
-    margin: '50px',
-    display: 'block',
-    width: '1000px',
-    height: '1000px',
+    margin: '80px 50px',
+    display: 'block'
 
 })
 

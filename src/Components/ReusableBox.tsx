@@ -1,74 +1,70 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import {InputBase, styled} from "@mui/material";
+import {InputBase, styled, Typography} from "@mui/material";
 
 interface ReusableBoxProps {
-    imgUrl: string
-    label: string
-    onClick: () => void
-    greyLabel: boolean
+    imgUrl: string,
+    allowClick?: boolean,
+    squared?: boolean,
+    label: string,
+    onClick: () => void,
+    greyLabel: boolean,
     price?: number
 }
 interface DivProps {
     greyLabel: boolean;
+    squared?: boolean;
 }
 
-const LabelContainer = styled('div')<DivProps>(({ theme, greyLabel }) => ({
+const LabelContainer = styled('div')<DivProps>(({ theme, greyLabel, squared }) => ({
     backgroundColor: greyLabel ? '#E3E3E3' : '#FFFFFF',
-    width: '227px',
-    marginLeft: greyLabel ? '-221px' : '',
-    height: greyLabel ? '30px' : '50px',
-    borderBottomLeftRadius: '10px',
-    borderBottomRightRadius: '10px',
+    width: '100%',
+    borderBottomLeftRadius: squared ? 0 : '10px',
+    borderBottomRightRadius: squared ? 0 : '10px',
     position: 'sticky',
     lineHeight: greyLabel ? 0 : '10px',
     textAlign: 'center'
 }));
 
 const FixedPriceContainer =styled('div')({
-    position: 'sticky',
-    marginBottom: '190px',
-    marginLeft: '160px',
+    position: 'absolute',
+    right: 8,
+    top: 16,
+    backgroundColor: '#E3E3E3',
+    padding: '4px 8px',
+    borderRadius: 6,
+    textAlign: 'center'
 });
 
-const CustomizedInput = styled(InputBase)({
-    '& .MuiInputBase-input': {
-        borderRadius: 6,
-        position: 'relative',
-        backgroundColor: '#E3E3E3',
-        width: '45px',
-        padding: '4px 8px',
-        textAlign: 'center',
-    },
-
-});
 
 function ReusableBox(props: ReusableBoxProps ) {
     return (
         <Box
             sx={{
-                width: 227,
+                minWidth: 227,
                 height: 227,
-                margin:'30px',
-                borderRadius: '10px',
-                backgroundSize: 'contain',
+                margin: '30px',
+                borderRadius: props.squared ? 0 : '10px',
+                backgroundSize: 'cover',
                 backgroundImage: "url(" + props.imgUrl + ")",
+                backgroundRepeat: 'no-repeat',
                 '&:hover': {
-                    opacity: [0.9, 0.8, 0.7],
+                    opacity: props.allowClick ? [0.9, 0.8, 0.7] : 1,
                 },
                 display: 'flex',
-                alignItems: 'flex-end'
+                alignItems: 'flex-end',
+                position: 'relative'
             }}
         onClick={props.onClick}
         >
-            {props.price && <FixedPriceContainer>
-                <CustomizedInput
-                    value={props.price.toFixed(2) + '€'}
-                    id="counter-input"
-                    readOnly
-                />
-                </FixedPriceContainer>}
-            <LabelContainer greyLabel={props.greyLabel}>
+            {typeof props.price !== "undefined" && (
+                <FixedPriceContainer>
+                    <Typography variant="body1" display="block">
+                        {props.price.toFixed(2) + '€'}
+                    </Typography>
+                </FixedPriceContainer>
+            )}
+            <LabelContainer greyLabel={props.greyLabel} squared={props.squared}>
                 <h3 style={{marginTop: props.greyLabel? '15px' : ''}}>{props.label}</h3>
             </LabelContainer>
         </Box>
