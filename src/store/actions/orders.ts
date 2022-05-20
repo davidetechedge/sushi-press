@@ -11,7 +11,7 @@ export const resetOrder = createAction<void>('orders/resetOrder');
 export const getMenu = createAsyncThunk<MenuCategories[]>(
     'orders/getMenu',
     async () => {
-        const response = await axios.get<MenuCategories[]>('https://jsonkeeper.com/b/OOVX');
+        const response = await axios.get<MenuCategories[]>('https://api.npoint.io/8f7a5852d72e99542a52');
 
         return response.data;
     }
