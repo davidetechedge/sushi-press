@@ -46,7 +46,7 @@ const CustomizedInput = styled(InputBase)({
 const MenuContainer = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const { type: orderType, menu, items: orderItems } = useAppSelector(state => state.orders);
+    const { type: orderType, menu, items: orderItems, people } = useAppSelector(state => state.orders);
     const [menuCategories, setMenuCategories] = useState<string[]>([])
     const [menuItems, setMenuItems] = useState<MenuCategoryItem[]>([])
     
@@ -77,7 +77,7 @@ const MenuContainer = () => {
         }
 
         return totalPrice + item.price;
-    }, orderType === OrderType.AYCE ? 24.99 : 2.50);
+    }, (orderType === OrderType.AYCE ? 24.99 : 2.50) * people);
 
     return (
         <MyMenuContainer>
