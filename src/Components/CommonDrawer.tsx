@@ -3,12 +3,13 @@ import {Button, Drawer, List, ListItem, styled} from "@mui/material";
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 import {useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
+import { OrderType } from '../store/types/orders';
 
 
 interface CommonDrawerProps {
     items: string[]
     goBack : () => void
-    type: string
+    type: OrderType
     onClickCategory : (cat: string) => void
 }
 interface DivProps {
@@ -33,6 +34,28 @@ const CustomButton = styled(ButtonUnstyled)<DivProps>(({ theme, active }) => ({
         backgroundColor: '#C9C9C9'
     }
 }));
+
+const DrawerContent = styled('div')({
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    height: '100%'
+});
+
+const MenuCategory = styled('div')({
+    marginBottom: '30px',
+    marginLeft: '10px',
+    '> h4': {
+        margin: 0,
+        marginLeft: '10px',
+        textTransform: 'capitalize',
+
+        '> span:first-of-type': {
+            color: '#1C1C1C',
+            paddingRight: '4px'
+        }
+    }
+})
 
 const drawerWidth = 300;
 
@@ -63,17 +86,24 @@ function CommonDrawer(props: CommonDrawerProps ) {
             variant="permanent"
             anchor="left"
         >
-            <CustomList>
-                {props.items.map((text) => (
-                    <ListItem key={text}>
-                        <CustomButton variant="outlined" active={text === activeCategory ? "true" : "false"} onClick={() => props.onClickCategory(text)}>
-                            {text.toUpperCase()}
-                        </CustomButton>
-                    </ListItem>
-                ))}
-            </CustomList>
-            <h4 style={{margin: '0 0 0 30px'}}>{`Menu: ${props.type === 'all-you-can-eat' ? 'all you can eat' : 'à la carte'}` }</h4>
-            <Button onClick={props.goBack}><h3 style={{margin: 0}}>{'GO BACK TO MENU SELECTION'}</h3></Button>
+            <DrawerContent>
+                <CustomList>
+                    {props.items.map((text) => (
+                        <ListItem key={text}>
+                            <CustomButton variant="outlined" active={text === activeCategory ? "true" : "false"} onClick={() => props.onClickCategory(text)}>
+                                {text.toUpperCase()}
+                            </CustomButton>
+                        </ListItem>
+                    ))}
+                </CustomList>
+                <MenuCategory>
+                    <h4>
+                        <span>Menu:</span>
+                        <span>{`${props.type === OrderType.AYCE ? 'all you can eat' : 'à la carte'}` }</span>
+                    </h4>
+                    <Button onClick={props.goBack}><h3 style={{margin: 0}}>{'GO BACK TO MENU SELECTION'}</h3></Button>
+                </MenuCategory>
+            </DrawerContent>
         </Drawer>
     );
 }

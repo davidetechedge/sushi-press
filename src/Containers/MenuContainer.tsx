@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import CommonDrawer from "../Components/CommonDrawer";
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import * as React from "react";
-import {MenuCategoryItem} from "../store/types/orders";
+import {MenuCategoryItem, OrderType} from "../store/types/orders";
 import { OrderItem } from "../Components/OrderItem";
 
 
@@ -94,7 +94,7 @@ const MenuContainer = () => {
             <CommonDrawer
                 items={menuCategories}
                 goBack={() => dispatch(resetOrder())}
-                type={orderType || ""}
+                type={orderType || OrderType.AYCE}
                 onClickCategory={onClickCategory}/>
             <RightMenuContainer>
                 <Grid container
