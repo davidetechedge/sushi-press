@@ -46,9 +46,8 @@ const CustomizedInput = styled(InputBase)({
 const MenuContainer = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const { type: orderType, menu } = useAppSelector(state => state.orders);
+    const { type: orderType, menu, items: orderItems } = useAppSelector(state => state.orders);
     const [menuCategories, setMenuCategories] = useState<string[]>([])
-    const [cartValue, setCartValue] = useState<string>('')
     const [menuItems, setMenuItems] = useState<MenuCategoryItem[]>([])
     
     const onClickCategory = useCallback((cat: string) => {
@@ -72,18 +71,19 @@ const MenuContainer = () => {
             onClickCategory(menuCategories[0])
     }, [menuCategories, menuItems.length, onClickCategory])
 
-    useEffect(() => {
-        if(orderType && orderType==='all-you-can-eat')
-            setCartValue('24,99 €')
-        else
-            setCartValue('2,50 €')
-    }, [orderType])
+    const cartValue = orderItems.reduce((totalPrice, item) => {
+        if ( orderType === OrderType.AYCE && item.included ) {
+            return totalPrice;
+        }
+
+        return totalPrice + item.price;
+    }, orderType === OrderType.AYCE ? 24.99 : 2.50);
 
     return (
         <MyMenuContainer>
             <FixedHeaderContainer>
                 <CustomizedInput
-                    value={cartValue}
+                    value={cartValue.toFixed(2) + '€'}
                     id="counter-input"
                     readOnly
                 />

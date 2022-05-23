@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { addOrderItem, getMenu, removeOrderItem, resetOrder, setOrderPeople, setOrderType } from "../actions/orders";
-import { APIError, APIStatus, InternalError } from "../axiosConfiguration";
+import { APIStatus, InternalError } from "../axiosConfiguration";
 import { OrdersState } from "../types/orders";
 
 export const initialState: OrdersState = {
@@ -20,6 +20,7 @@ export default createReducer(initialState, (builder) => {
         .addCase(resetOrder, (state) => {
             state.people = 1;
             state.type = undefined;
+            state.items = []
         })
         .addCase(addOrderItem, (state, action) => {
             state.items = [ ...state.items, action.payload ];
