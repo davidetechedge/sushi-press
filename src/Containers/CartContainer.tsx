@@ -5,7 +5,22 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { removeOrderItem } from '../store/actions/orders';
 import { useNavigate } from 'react-router-dom';
 import { OrderType } from '../store/types/orders';
-import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
+import { ButtonUnstyled } from '@mui/base';
+
+const CustomButton = styled(ButtonUnstyled)({
+    fontWeight: 'bold',
+    fontSize: '0.875rem',
+    color: '#282828',
+    width: '200px',
+    borderRadius: '10px',
+    backgroundColor:  '#D3CD00',
+    padding: '12px 24px',
+    cursor: 'pointer',
+    border: 'none',
+    '&:hover': {
+        backgroundColor: '#C9C9C9'
+    }
+});
 
 const ListWrapper = styled('div')({
     padding: '40px',
@@ -13,11 +28,11 @@ const ListWrapper = styled('div')({
     maxHeight: '60vh'
 })
 
-const ReversedRow = styled('div')({
+const SpacedRow = styled('div')({
     display: 'flex',
-    justifyContent: 'flex-end',
-    marginBottom: '30px',
-    gap: '10px'
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    margin: '30px 0',
 });
 
 const CustomizedInput = styled(InputBase)({
@@ -95,14 +110,19 @@ export const CartContainer: React.VFC = () => {
                 ))}
             </List>
 
-            <ReversedRow>
-                <h4>Total price:</h4>
-                <CustomizedInput
-                    value={cartValue.toFixed(2) + '€'}
-                    id="counter-input"
-                    readOnly
-                />
-            </ReversedRow>
+            <SpacedRow>
+                <div style={{ display: 'inline-flex', alignItems: 'center' }}>
+                    <h4 style={{ margin: 0, marginRight: '10px' }}>Total price:</h4>
+                    <CustomizedInput
+                        value={cartValue.toFixed(2) + '€'}
+                        id="counter-input"
+                        readOnly
+                    />
+                </div>
+                <CustomButton variant="outlined" onClick={() => console.log('Send order..')}>
+                    SEND ORDER
+                </CustomButton>
+            </SpacedRow>
         </ListWrapper>
     )
 }
