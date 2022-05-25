@@ -42,10 +42,11 @@ const OrderHeader = styled('div')({
 })
 
 export type OrderItemProps = {
-    data: MenuCategoryItem
+    data: MenuCategoryItem,
+    onAdd: () => void
 }
 
-export const OrderItem: React.VFC<OrderItemProps> = ({ data }) => {
+export const OrderItem: React.VFC<OrderItemProps> = ({ data, onAdd }) => {
     const [ quantity, setQuantity ] = useState<number>(1);
     const dispatch = useAppDispatch();
     const { type } = useAppSelector(state => state.orders)
@@ -55,6 +56,8 @@ export const OrderItem: React.VFC<OrderItemProps> = ({ data }) => {
             ...data,
             quantity
         }));
+
+        onAdd();
     }
     return (
         <Grid item>

@@ -1,4 +1,4 @@
-import {Grid, IconButton, InputBase, styled} from "@mui/material";
+import {Alert, Grid, IconButton, InputBase, Snackbar, styled} from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../store";
 import {resetOrder} from "../store/actions/orders";
 import {useCallback, useEffect, useState} from "react";
@@ -48,7 +48,8 @@ const MenuContainer = () => {
     const dispatch = useAppDispatch();
     const { type: orderType, menu, items: orderItems, people } = useAppSelector(state => state.orders);
     const [menuCategories, setMenuCategories] = useState<string[]>([])
-    const [menuItems, setMenuItems] = useState<MenuCategoryItem[]>([])
+    const [menuItems, setMenuItems] = useState<MenuCategoryItem[]>([]);
+    const [notifications, setNotifications] = useState<number>(0);
     
     const onClickCategory = useCallback((cat: string) => {
         setMenuItems(menu?.data?.find((elem) => elem.category === cat)?.items || [])
@@ -79,8 +80,24 @@ const MenuContainer = () => {
         return totalPrice + (item.price * item.quantity);
     }, (orderType === OrderType.AYCE ? 24.99 : 2.50) * people);
 
+    useEffect(() => {
+        console.log('Current notifications:', notifications);
+    }, [notifications])
     return (
         <MyMenuContainer>
+            {new Array(notifications).fill(0).map((_, index) => (
+                <Snackbar key={index + Math.random() * 10} 
+                    open 
+                    autoHideDuration={6000} 
+                    onClose={() => setNotifications(prev => prev - 1)}
+                    anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                >
+                    <Alert onClose={() => setNotifications(prev => prev - 1)} severity="success" sx={{ width: '100%' }}>
+                        Item added to cart!
+                    </Alert>
+                </Snackbar>
+            ))}
+            
             <FixedHeaderContainer>
                 <CustomizedInput
                     value={cartValue.toFixed(2) + '€'}
@@ -103,7 +120,7 @@ const MenuContainer = () => {
                     alignItems="flex-start"
                     justifyContent="left">
                 {menuItems.map((item) => (
-                        <OrderItem key={JSON.stringify(item)} data={item} />
+                        <OrderItem key={JSON.stringify(item)} data={item} onAdd={() => setNotifications(prev => prev + 1)} />
                     ))}
                 </Grid>
             </RightMenuContainer>
