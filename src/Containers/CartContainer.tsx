@@ -1,4 +1,4 @@
-import { Avatar, IconButton, InputBase, List, ListItem, ListItemAvatar, ListItemText, styled, Typography } from '@mui/material';
+import { Avatar, Button, IconButton, InputBase, List, ListItem, ListItemAvatar, ListItemText, styled, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../store';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -23,7 +23,7 @@ const CustomButton = styled(ButtonUnstyled)({
 });
 
 const ListWrapper = styled('div')({
-    padding: '40px',
+    padding: '0 40px',
     overflow: 'auto',
     maxHeight: '60vh'
 })
@@ -33,6 +33,7 @@ const SpacedRow = styled('div')({
     justifyContent: 'space-between',
     alignItems: 'center',
     margin: '30px 0',
+    marginRight: '20px'
 });
 
 const CustomizedInput = styled(InputBase)({
@@ -67,62 +68,70 @@ export const CartContainer: React.VFC = () => {
     }, (orderType === OrderType.AYCE ? 24.99 : 2.50) * people);
 
     return (
-        <ListWrapper>
-            <List sx={{ width: '100%', bgcolor: 'background.paper', borderRadius: '10px' }}>
-                {orderItems.map((item, index) => (
-                    <ListItem key={index} 
-                        alignItems="flex-start" 
-                        sx={{ 
-                            borderBottom: '1px solid rgba(0,0,0,0.05)',
-                            '&:last-of-type': {
-                                borderBottomWidth: 0
-                            }
-                        }}
-                        secondaryAction={
-                            <IconButton 
-                                edge="end" 
-                                aria-label="comments" 
-                                onClick={() => dispatch(removeOrderItem(index))}
-                            >
-                                <DeleteIcon />
-                            </IconButton>
-                        }
-                    >
-                        <ListItemAvatar>
-                            <Avatar src={item.img} />
-                        </ListItemAvatar>
-                        <ListItemText
-                            primary={item.name}
-                            secondary={
-                                <React.Fragment>
-                                    <Typography
-                                        sx={{ display: 'inline' }}
-                                        component="span"
-                                        variant="body2"
-                                        color="text.primary"
-                                    >
-                                        {item.quantity}x{((orderType === OrderType.AYCE && item.included) ? 0 : item.price).toFixed(2)}€
-                                    </Typography>
-                                </React.Fragment>
-                            }
-                        />
-                    </ListItem>
-                ))}
-            </List>
+        <div>
+            <ListWrapper>
+                <Button onClick={() => navigate("/menu")}><h3 style={{margin: 0}}>{'GO BACK'}</h3></Button>
+            </ListWrapper>
 
-            <SpacedRow>
-                <div style={{ display: 'inline-flex', alignItems: 'center' }}>
-                    <h4 style={{ margin: 0, marginRight: '10px' }}>Total price:</h4>
-                    <CustomizedInput
-                        value={cartValue.toFixed(2) + '€'}
-                        id="counter-input"
-                        readOnly
-                    />
-                </div>
-                <CustomButton variant="outlined" onClick={() => console.log('Send order..')}>
-                    SEND ORDER
-                </CustomButton>
-            </SpacedRow>
-        </ListWrapper>
+            <ListWrapper>
+                <List sx={{ width: '100%', bgcolor: 'background.paper', borderRadius: '10px' }}>
+                    {orderItems.map((item, index) => (
+                        <ListItem key={index} 
+                            alignItems="flex-start" 
+                            sx={{ 
+                                borderBottom: '1px solid rgba(0,0,0,0.05)',
+                                '&:last-of-type': {
+                                    borderBottomWidth: 0
+                                }
+                            }}
+                            secondaryAction={
+                                <IconButton 
+                                    edge="end" 
+                                    aria-label="comments" 
+                                    onClick={() => dispatch(removeOrderItem(index))}
+                                >
+                                    <DeleteIcon />
+                                </IconButton>
+                            }
+                        >
+                            <ListItemAvatar>
+                                <Avatar src={item.img} />
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary={item.name}
+                                secondary={
+                                    <React.Fragment>
+                                        <Typography
+                                            sx={{ display: 'inline' }}
+                                            component="span"
+                                            variant="body2"
+                                            color="text.primary"
+                                        >
+                                            {item.quantity}x{((orderType === OrderType.AYCE && item.included) ? 0 : item.price).toFixed(2)}€
+                                        </Typography>
+                                    </React.Fragment>
+                                }
+                            />
+                        </ListItem>
+                    ))}
+                </List>
+            </ListWrapper>
+
+            <ListWrapper>
+                <SpacedRow>
+                    <div style={{ display: 'inline-flex', alignItems: 'center' }}>
+                        <h4 style={{ margin: 0, marginRight: '10px' }}>Total price:</h4>
+                        <CustomizedInput
+                            value={cartValue.toFixed(2) + '€'}
+                            id="counter-input"
+                            readOnly
+                        />
+                    </div>
+                    <CustomButton variant="outlined" onClick={() => console.log('Send order..')}>
+                        SEND ORDER
+                    </CustomButton>
+                </SpacedRow>
+            </ListWrapper>
+        </div>
     )
 }
