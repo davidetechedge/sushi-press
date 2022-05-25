@@ -23,7 +23,18 @@ export default createReducer(initialState, (builder) => {
             state.items = []
         })
         .addCase(addOrderItem, (state, action) => {
-            state.items = [ ...state.items, action.payload ];
+            let itemAlreadyAdded = state.items.findIndex(item => {
+                return item.id === action.payload.id && 
+                    item.name === action.payload.name && 
+                    item.price === action.payload.price;
+            })
+
+            if ( itemAlreadyAdded === -1 ) {
+                state.items = [ ...state.items, action.payload ];
+            }
+            else {
+                state.items[itemAlreadyAdded].quantity += action.payload.quantity;
+            }
         })
         .addCase(removeOrderItem, (state, action) => {
             let updatedList = [ ...state.items ];

@@ -104,7 +104,7 @@ const MenuContainer = () => {
                     id="counter-input"
                     readOnly
                 />
-                <IconButton aria-label="cart" sx={{ color: '#282828' }} onClick={()=> navigate("/cart") }>
+                <IconButton aria-label="cart" sx={{ color: '#282828' }} onClick={()=> navigate("/cart")}>
                     <LocalGroceryStoreIcon fontSize={'large'} />
                 </IconButton>
             </FixedHeaderContainer>
