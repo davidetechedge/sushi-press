@@ -63,7 +63,7 @@ export const CartContainer: React.VFC = () => {
             return totalPrice;
         }
 
-        return totalPrice + item.price;
+        return totalPrice + (item.price * item.quantity);
     }, (orderType === OrderType.AYCE ? 24.99 : 2.50) * people);
 
     return (
@@ -101,7 +101,7 @@ export const CartContainer: React.VFC = () => {
                                         variant="body2"
                                         color="text.primary"
                                     >
-                                        {item.quantity}x{(item.included ? 0 : item.price).toFixed(2)}€
+                                        {item.quantity}x{((orderType === OrderType.AYCE && item.included) ? 0 : item.price).toFixed(2)}€
                                     </Typography>
                                 </React.Fragment>
                             }

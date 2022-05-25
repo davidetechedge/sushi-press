@@ -76,7 +76,7 @@ const MenuContainer = () => {
             return totalPrice;
         }
 
-        return totalPrice + item.price;
+        return totalPrice + (item.price * item.quantity);
     }, (orderType === OrderType.AYCE ? 24.99 : 2.50) * people);
 
     return (
