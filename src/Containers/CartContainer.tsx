@@ -22,18 +22,18 @@ const CustomButton = styled(ButtonUnstyled)({
     }
 });
 
-const ListWrapper = styled('div')({
+const ListWrapper = styled('div')<{ grow?: boolean }>((props) => ({
     padding: '0 40px',
-    overflow: 'auto',
-    maxHeight: '60vh'
-})
+    flexGrow: props.grow ? 1 : 0
+}))
 
 const SpacedRow = styled('div')({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
     margin: '30px 0',
-    marginRight: '20px'
+    marginRight: '20px',
+    flexGrow: '0'
 });
 
 const CustomizedInput = styled(InputBase)({
@@ -68,12 +68,12 @@ export const CartContainer: React.VFC = () => {
     }, (orderType === OrderType.AYCE ? 24.99 : 2.50) * people);
 
     return (
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', paddingTop: '20px', height: 'calc(100vh - 30px)' }}>
             <ListWrapper>
-                <Button onClick={() => navigate("/menu")}><h3 style={{margin: 0}}>{'GO BACK'}</h3></Button>
+                <Button onClick={() => navigate("/menu")}><h3 style={{margin: 0, marginBottom: '10px'}}>{'GO BACK'}</h3></Button>
             </ListWrapper>
 
-            <ListWrapper>
+            <ListWrapper grow>
                 <List sx={{ width: '100%', bgcolor: 'background.paper', borderRadius: '10px' }}>
                     {orderItems.map((item, index) => (
                         <ListItem key={index} 
