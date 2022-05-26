@@ -101,7 +101,7 @@ const MenuContainer = () => {
             <FixedHeaderContainer>
                 <CustomizedInput
                     value={cartValue.toFixed(2) + '€'}
-                    id="counter-input"
+                    id="cart-price"
                     readOnly
                 />
                 <IconButton aria-label="cart" sx={{ color: '#282828' }} onClick={()=> navigate("/cart")}>
