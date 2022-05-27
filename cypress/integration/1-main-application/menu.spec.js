@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /// <reference types="cypress" />
 
-describe('can change people', () => {
+describe('menu display correctly', () => {
     beforeEach(() => {
       cy.fixture('sushipressdata').then((sushiData) => {
         cy.intercept('GET', 'https://api.npoint.io/8f7a5852d72e99542a52', sushiData).as("Sushi Data")
