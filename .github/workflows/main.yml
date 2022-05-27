@@ -20,12 +20,14 @@ jobs:
       #  with:
       #    build: npm run build
       #    start: npm start
+      - name: Installing dependency
+        run: npm ci
+
+      - name: Building
+        run: npm run build
 
       - name: Testing
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-        run: |
-          npm ci
-          npm run build
-          npm run start &
-          npx cypress run --record --headless
+        run: npm run test
+          
