@@ -25,6 +25,7 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
         run: |
+          npm ci
           npm run build
           npm run start &
           npx cypress run --record --headless
