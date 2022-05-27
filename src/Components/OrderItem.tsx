@@ -61,7 +61,7 @@ export const OrderItem: React.VFC<OrderItemProps> = ({ data, onAdd }) => {
     }
     return (
         <Grid item>
-            <OrderContainer>
+            <OrderContainer aria-label="order-item">
                 <OrderHeader>
                     <ReusableBox
                         imgUrl={data.img}

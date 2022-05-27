@@ -1,8 +1,9 @@
+/* eslint-disable no-undef */
 /// <reference types="cypress" />
 
 describe('can change people', () => {
     beforeEach(() => {
-      cy.visit('http://localhost:3000');
+      cy.visit('/');
     })
   
     it('set 1 people by default', () => {
@@ -32,6 +33,10 @@ describe('can change people', () => {
   describe('set price correctly', () => {
     const AYCEPrice = 24.99;
     const ALACARTEPrice = 2.50;
+
+    beforeEach(() => {
+      cy.visit('/');
+    })
 
     afterEach(() => {
         cy.contains('GO BACK TO MENU').click();

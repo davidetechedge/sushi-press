@@ -87,7 +87,7 @@ function CommonDrawer(props: CommonDrawerProps ) {
             anchor="left"
         >
             <DrawerContent>
-                <CustomList>
+                <CustomList aria-label="category-list">
                     {props.items.map((text) => (
                         <ListItem key={text}>
                             <CustomButton variant="outlined" active={text === activeCategory ? "true" : "false"} onClick={() => props.onClickCategory(text)}>
@@ -99,7 +99,7 @@ function CommonDrawer(props: CommonDrawerProps ) {
                 <MenuCategory>
                     <h4>
                         <span>Menu:</span>
-                        <span>{`${props.type === OrderType.AYCE ? 'all you can eat' : 'à la carte'}` }</span>
+                        <span aria-label="menu-type">{`${props.type === OrderType.AYCE ? 'all you can eat' : 'à la carte'}` }</span>
                     </h4>
                     <Button onClick={props.goBack}><h3 style={{margin: 0}}>{'GO BACK TO MENU SELECTION'}</h3></Button>
                 </MenuCategory>

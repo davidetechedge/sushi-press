@@ -118,8 +118,10 @@ const MenuContainer = () => {
                     direction="row"
                     spacing={4}
                     alignItems="flex-start"
-                    justifyContent="left">
-                {menuItems.map((item) => (
+                    justifyContent="left"
+                    aria-label="items-grid"
+                >
+                    {menuItems.map((item) => (
                         <OrderItem key={JSON.stringify(item)} data={item} onAdd={() => setNotifications(prev => prev + 1)} />
                     ))}
                 </Grid>
