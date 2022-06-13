@@ -39,8 +39,15 @@ const CustomizedInput = styled(InputBase)({
         textAlign: 'center',
         fontWeight: 'bold'
     },
-
 });
+
+const CustomizedSnackbar = styled(Snackbar)({
+    backgroundColor: '#D3CD00'
+})
+
+const CustomizedAlert = styled(Alert)({
+    backgroundColor: '#D3CD00'
+})
 
 
 const MenuContainer = () => {
@@ -86,16 +93,16 @@ const MenuContainer = () => {
     return (
         <MyMenuContainer>
             {new Array(notifications).fill(0).map((_, index) => (
-                <Snackbar key={index + Math.random() * 10} 
+                <CustomizedSnackbar key={index + Math.random() * 10}
                     open 
                     autoHideDuration={6000} 
                     onClose={() => setNotifications(prev => prev - 1)}
                     anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                 >
-                    <Alert onClose={() => setNotifications(prev => prev - 1)} severity="success" sx={{ width: '100%' }}>
+                    <CustomizedAlert onClose={() => setNotifications(prev => prev - 1)} severity="success" sx={{ width: '100%' }}>
                         Item added to cart!
-                    </Alert>
-                </Snackbar>
+                    </CustomizedAlert>
+                </CustomizedSnackbar>
             ))}
             
             <FixedHeaderContainer>

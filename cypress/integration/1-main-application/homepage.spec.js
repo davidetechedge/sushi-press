@@ -24,7 +24,7 @@ describe('can change people', () => {
       cy.get('#counter-input').should('have.value', 2);
     });
   
-    it('cannot have less then 1 people', () => {
+    it('cannot have less than 1 people', () => {
       cy.get('button[aria-label="remove"]').click();
       cy.get('#counter-input').should('have.value', 1);
     })
