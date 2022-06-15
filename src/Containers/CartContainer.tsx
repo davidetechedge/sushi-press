@@ -1,5 +1,5 @@
-import { Avatar, Button, IconButton, InputBase, List, ListItem, ListItemAvatar, ListItemText, styled, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
+import { Avatar, Box, Button, IconButton, InputBase, List, ListItem, ListItemAvatar, ListItemText, Modal, styled, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../store';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { removeOrderItem, sendOrder } from '../store/actions/orders';
@@ -52,6 +52,7 @@ const CustomizedInput = styled(InputBase)({
 export const CartContainer: React.VFC = () => {
     const dispatch = useAppDispatch();
     const { type: orderType, items: orderItems, billPrice } = useAppSelector(state => state.orders);
+    const [ showSendOrderModal, setShowSendOrderModal ] = useState<boolean>(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -66,9 +67,38 @@ export const CartContainer: React.VFC = () => {
 
         return totalPrice + (item.price * item.quantity);
     }, billPrice);
+    
+    const handleSendOrder = () => {
+        dispatch(sendOrder());
+        setShowSendOrderModal(false);
+    }
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', paddingTop: '20px', height: 'calc(100vh - 30px)' }}>
+            <Modal
+                open={showSendOrderModal}
+                onClose={handleSendOrder}
+            >
+               <Box sx={{
+                    position: 'absolute' as 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: 400,
+                    bgcolor: 'background.paper',
+                    border: '2px solid #000',
+                    boxShadow: 24,
+                    p: 4
+               }}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Your order is on your way!
+                    </Typography>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        Now you can close this modal and continue your experience.
+                    </Typography>
+                </Box>
+            </Modal>
+
             <ListWrapper>
                 <Button onClick={() => navigate("/menu")}><h3 style={{margin: 0, marginBottom: '10px'}}>{'GO BACK'}</h3></Button>
             </ListWrapper>
@@ -127,7 +157,7 @@ export const CartContainer: React.VFC = () => {
                             readOnly
                         />
                     </div>
-                    <CustomButton variant="outlined" onClick={() => dispatch(sendOrder())}>
+                    <CustomButton variant="outlined" onClick={() => setShowSendOrderModal(true)}>
                         SEND ORDER
                     </CustomButton>
                 </SpacedRow>
