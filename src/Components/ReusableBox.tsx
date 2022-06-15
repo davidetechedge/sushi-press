@@ -53,7 +53,8 @@ function ReusableBox(props: ReusableBoxProps ) {
                 },
                 display: 'flex',
                 alignItems: 'flex-end',
-                position: 'relative'
+                position: 'relative',
+                cursor:  props.allowClick ? 'pointer' : 'default'
             }}
             onClick={props.onClick}
         >

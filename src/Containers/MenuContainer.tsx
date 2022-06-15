@@ -111,7 +111,7 @@ const MenuContainer = () => {
                     id="cart-price"
                     readOnly
                 />
-                <IconButton aria-label="cart" sx={{ color: '#282828' }} onClick={()=> navigate("/cart")}>
+                <IconButton aria-label="cart" sx={{ color: '#282828' }} onClick={()=> navigate("/cart")} disabled={!orderItems.length}>
                     <LocalGroceryStoreIcon fontSize={'large'} />
                 </IconButton>
             </FixedHeaderContainer>

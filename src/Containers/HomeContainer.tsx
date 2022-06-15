@@ -5,7 +5,7 @@ import {styled} from "@mui/material";
 import ReusableBox from "../Components/ReusableBox";
 import allyoucaneat from '../Assets/Images/allyoucaneat.png'
 import alacarte from '../Assets/Images/alacarte.png'
-import logo from '../Assets/Images/logo.png'
+import logo from '../Assets/Images/logo_nobg.png'
 import ReusableCounter from "../Components/ReusableCounter";
 import { useAppDispatch, useAppSelector } from "../store";
 import { getMenu, setOrderPeople, setOrderType } from "../store/actions/orders";
@@ -71,7 +71,7 @@ const HomeContainer = () => {
     return (
         <MyHomeContainer>
             <LogoContainer>
-                <img src={logo} style={{maxWidth: '30%', height: 'auto'}} alt="SushiPress Logo" />
+                <img src={logo} style={{maxWidth: '40%', height: 'auto'}} alt="SushiPress Logo" />
             </LogoContainer>
             <ItemsContainer>
                 <FlexContainerBoxes>

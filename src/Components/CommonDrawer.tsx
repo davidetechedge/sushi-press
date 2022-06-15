@@ -4,6 +4,7 @@ import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 import {useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 import { OrderType } from '../store/types/orders';
+import logo from "../Assets/Images/logo_nobg.png";
 
 
 interface CommonDrawerProps {
@@ -17,7 +18,7 @@ interface DivProps {
 }
 
 const CustomList = styled(List)({
-    margin: '40px 0 50px 0'
+    margin: '0 0 50px 0'
 });
 
 const CustomButton = styled(ButtonUnstyled)<DivProps>(({ theme, active }) => ({
@@ -38,8 +39,12 @@ const CustomButton = styled(ButtonUnstyled)<DivProps>(({ theme, active }) => ({
 const DrawerContent = styled('div')({
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'start',
     height: '100%'
+});
+
+const LogoContainer = styled('div')({
+    textAlign: 'center',
 });
 
 const MenuCategory = styled('div')({
@@ -87,6 +92,9 @@ function CommonDrawer(props: CommonDrawerProps ) {
             anchor="left"
         >
             <DrawerContent>
+                <LogoContainer>
+                <img src={logo} style={{maxWidth: '50%', height: 'auto', cursor: 'pointer'}} alt="SushiPress Logo" onClick={props.goBack} />
+                </LogoContainer>
                 <CustomList aria-label="category-list">
                     {props.items.map((text) => (
                         <ListItem key={text}>
