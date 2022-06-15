@@ -20,3 +20,5 @@ export const getMenu = createAsyncThunk<MenuCategories[]>(
 export const addOrderItem = createAction<OrderItem>('orders/addOrderItem');
 
 export const removeOrderItem = createAction<number>('orders/removeOrderItem');
+
+export const sendOrder = createAction<void>('orders/sendOrder');

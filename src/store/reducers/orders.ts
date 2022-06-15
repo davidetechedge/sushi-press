@@ -1,11 +1,13 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { addOrderItem, getMenu, removeOrderItem, resetOrder, setOrderPeople, setOrderType } from "../actions/orders";
+import { addOrderItem, getMenu, removeOrderItem, resetOrder, setOrderPeople, setOrderType, sendOrder } from "../actions/orders";
 import { APIStatus, InternalError } from "../axiosConfiguration";
-import { OrdersState } from "../types/orders";
+import { OrdersState, OrderType } from "../types/orders";
 
 export const initialState: OrdersState = {
     people: 1,
     menu: { status: APIStatus.IDLE },
+    bill: [],
+    billPrice: 0,
     items: []
 }
 
@@ -16,11 +18,15 @@ export default createReducer(initialState, (builder) => {
         })
         .addCase(setOrderType, (state, action) => {
             state.type = action.payload;
+            state.billPrice = (state.type === OrderType.AYCE ? 24.99 : 2.50) * state.people;
+            console.log('billPrice', state.billPrice);
         })
         .addCase(resetOrder, (state) => {
             state.people = 1;
             state.type = undefined;
             state.items = []
+            state.bill = []
+            state.billPrice = 0;
         })
         .addCase(addOrderItem, (state, action) => {
             let itemAlreadyAdded = state.items.findIndex(item => {
@@ -42,6 +48,20 @@ export default createReducer(initialState, (builder) => {
             updatedList.splice(action.payload, 1);
             state.items = updatedList;
         })
+
+    builder
+        .addCase(sendOrder, (state) => {
+            state.bill = [ ...state.bill, ...state.items ];
+            state.billPrice = state.items.reduce((totalPrice, item) => {
+                if ( state.type === OrderType.AYCE && item.included ) {
+                    return totalPrice;
+                }
+        
+                return totalPrice + (item.price * item.quantity);
+            }, state.billPrice);
+            state.items = [];
+            console.log('Dai cazzo')
+        });
 
     builder
         .addCase(getMenu.pending, (state) => {

@@ -26,5 +26,7 @@ export type OrdersState = {
     people: number,
     type?: OrderType,
     menu: APIData<MenuCategories[]>,
+    bill: OrderItem[],
+    billPrice: number,
     items: OrderItem[]
 }

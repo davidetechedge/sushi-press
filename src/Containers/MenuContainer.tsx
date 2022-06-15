@@ -53,7 +53,7 @@ const CustomizedAlert = styled(Alert)({
 const MenuContainer = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const { type: orderType, menu, items: orderItems, people } = useAppSelector(state => state.orders);
+    const { type: orderType, menu, items: orderItems, billPrice } = useAppSelector(state => state.orders);
     const [menuCategories, setMenuCategories] = useState<string[]>([])
     const [menuItems, setMenuItems] = useState<MenuCategoryItem[]>([]);
     const [notifications, setNotifications] = useState<number>(0);
@@ -85,7 +85,7 @@ const MenuContainer = () => {
         }
 
         return totalPrice + (item.price * item.quantity);
-    }, (orderType === OrderType.AYCE ? 24.99 : 2.50) * people);
+    }, billPrice);
 
     useEffect(() => {
         console.log('Current notifications:', notifications);

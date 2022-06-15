@@ -39,7 +39,7 @@ const CustomButton = styled(ButtonUnstyled)<DivProps>(({ theme, active }) => ({
 const DrawerContent = styled('div')({
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'start',
+    justifyContent: 'space-between',
     height: '100%'
 });
 
@@ -92,18 +92,20 @@ function CommonDrawer(props: CommonDrawerProps ) {
             anchor="left"
         >
             <DrawerContent>
-                <LogoContainer>
-                <img src={logo} style={{maxWidth: '50%', height: 'auto', cursor: 'pointer'}} alt="SushiPress Logo" onClick={props.goBack} />
-                </LogoContainer>
-                <CustomList aria-label="category-list">
-                    {props.items.map((text) => (
-                        <ListItem key={text}>
-                            <CustomButton variant="outlined" active={text === activeCategory ? "true" : "false"} onClick={() => props.onClickCategory(text)}>
-                                {text.toUpperCase()}
-                            </CustomButton>
-                        </ListItem>
-                    ))}
-                </CustomList>
+                <div>
+                    <LogoContainer>
+                        <img src={logo} style={{maxWidth: '50%', height: 'auto', cursor: 'pointer'}} alt="SushiPress Logo" onClick={props.goBack} />
+                    </LogoContainer>
+                    <CustomList aria-label="category-list">
+                        {props.items.map((text) => (
+                            <ListItem key={text}>
+                                <CustomButton variant="outlined" active={text === activeCategory ? "true" : "false"} onClick={() => props.onClickCategory(text)}>
+                                    {text.toUpperCase()}
+                                </CustomButton>
+                            </ListItem>
+                        ))}
+                    </CustomList>
+                </div>
                 <MenuCategory>
                     <h4>
                         <span>Menu:</span>

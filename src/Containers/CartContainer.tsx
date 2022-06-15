@@ -2,7 +2,7 @@ import { Avatar, Button, IconButton, InputBase, List, ListItem, ListItemAvatar, 
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../store';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { removeOrderItem } from '../store/actions/orders';
+import { removeOrderItem, sendOrder } from '../store/actions/orders';
 import { useNavigate } from 'react-router-dom';
 import { OrderType } from '../store/types/orders';
 import { ButtonUnstyled } from '@mui/base';
@@ -51,7 +51,7 @@ const CustomizedInput = styled(InputBase)({
 
 export const CartContainer: React.VFC = () => {
     const dispatch = useAppDispatch();
-    const { type: orderType, items: orderItems, people } = useAppSelector(state => state.orders);
+    const { type: orderType, items: orderItems, billPrice } = useAppSelector(state => state.orders);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -65,7 +65,7 @@ export const CartContainer: React.VFC = () => {
         }
 
         return totalPrice + (item.price * item.quantity);
-    }, (orderType === OrderType.AYCE ? 24.99 : 2.50) * people);
+    }, billPrice);
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', paddingTop: '20px', height: 'calc(100vh - 30px)' }}>
@@ -127,7 +127,7 @@ export const CartContainer: React.VFC = () => {
                             readOnly
                         />
                     </div>
-                    <CustomButton variant="outlined" onClick={() => console.log('Send order..')}>
+                    <CustomButton variant="outlined" onClick={() => dispatch(sendOrder())}>
                         SEND ORDER
                     </CustomButton>
                 </SpacedRow>
