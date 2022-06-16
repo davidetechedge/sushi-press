@@ -60,7 +60,7 @@ function ReusableBox(props: ReusableBoxProps ) {
         >
             {typeof props.price !== "undefined" && (
                 <FixedPriceContainer>
-                    <Typography variant="body1" display="block">
+                    <Typography variant="body1" display="block" aria-label="item-price">
                         {props.price.toFixed(2) + '€'}
                     </Typography>
                 </FixedPriceContainer>
