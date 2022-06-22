@@ -46,7 +46,10 @@ const CustomizedSnackbar = styled(Snackbar)({
 })
 
 const CustomizedAlert = styled(Alert)({
-    backgroundColor: '#D3CD00'
+    backgroundColor: '#D3CD00',
+    '& 	.MuiAlert-icon': {
+        color: '#1E4620'
+    }
 })
 
 
@@ -97,7 +100,7 @@ const MenuContainer = () => {
                     open 
                     autoHideDuration={6000} 
                     onClose={() => setNotifications(prev => prev - 1)}
-                    anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                    anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                 >
                     <CustomizedAlert onClose={() => setNotifications(prev => prev - 1)} severity="success" sx={{ width: '100%' }}>
                         Item added to cart!

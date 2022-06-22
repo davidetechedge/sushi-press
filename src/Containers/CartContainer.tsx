@@ -6,6 +6,8 @@ import { removeOrderItem, sendOrder } from '../store/actions/orders';
 import { useNavigate } from 'react-router-dom';
 import { OrderType } from '../store/types/orders';
 import { ButtonUnstyled } from '@mui/base';
+import CelebrationIcon from '@mui/icons-material/Celebration';
+
 
 const CustomButton = styled(ButtonUnstyled)({
     fontWeight: 'bold',
@@ -85,14 +87,15 @@ export const CartContainer: React.VFC = () => {
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
                     width: 400,
-                    bgcolor: 'background.paper',
-                    border: '2px solid #000',
+                    bgcolor: '#D3CD00',
                     boxShadow: 24,
-                    p: 4
+                    p: 4,
+                    textAlign: 'center'
                }}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         Your order is on your way!
                     </Typography>
+                   <img src="https://media.giphy.com/media/YkssnIidENYZiHzfkt/giphy.gif" style={{width: '50%'}} alt="loading..." />
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                         Now you can close this modal and continue your experience.
                     </Typography>
