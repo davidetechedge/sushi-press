@@ -6,7 +6,7 @@ import { removeOrderItem, sendOrder } from '../store/actions/orders';
 import { useNavigate } from 'react-router-dom';
 import { OrderType } from '../store/types/orders';
 import { ButtonUnstyled } from '@mui/base';
-import CelebrationIcon from '@mui/icons-material/Celebration';
+import sushiGif from '../Assets/Images/sushi.gif';
 
 
 const CustomButton = styled(ButtonUnstyled)({
@@ -95,7 +95,7 @@ export const CartContainer: React.VFC = () => {
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         Your order is on your way!
                     </Typography>
-                   <img src="https://media.giphy.com/media/YkssnIidENYZiHzfkt/giphy.gif" style={{width: '50%'}} alt="loading..." />
+                   <img src={sushiGif} style={{width: '50%'}} alt="loading..." />
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                         Now you can close this modal and continue your experience.
                     </Typography>
