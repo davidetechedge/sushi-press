@@ -122,10 +122,6 @@ describe('handle A LA CARTE orders', () => {
             });
         });
     })
-
-    it('can fail', () => {
-        expect(2).to.be.equal(1);
-    })
     
     it('add quantity item price correctly', () => {
         cy.fixture('sushipressdata').then((sushiData) => {
