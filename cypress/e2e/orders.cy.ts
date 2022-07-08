@@ -67,6 +67,18 @@ describe('handle AYCE orders', () => {
             });
         });
     })
+
+    it('remove item correctly', () => {
+        let orderItem = cy.get('[aria-label="items-grid"] [aria-label="order-item"]').first();
+        let itemPrice = orderItem.find('[aria-label="item-price"]')
+        //let orderItem = cy.get('[aria-label="items-list"] [aria-label="cart-item"]').first();
+        //let removeItemButton = orderItem.find('[aria-label="delete"]');
+
+        //removeItemButton.click();
+    });
+
+
+
 })
 
 
@@ -140,4 +152,24 @@ describe('handle A LA CARTE orders', () => {
             });
         });
     })
+
+    it('remove item correctly', () => {
+        let totalPrice = 2.50;
+        cy.get('[aria-label="items-grid"] [aria-label="order-item"]').first().find('[aria-label="item-price"]').then($el => {
+            let priceNumber = parseFloat($el.text().replace('€',''));
+            cy.wrap($el).parentsUntil('[aria-label="items-grid"]').contains('ADD TO CART').click();
+            cy.get('[aria-label="cart"]').click()
+            //verifica che il prezzo sia aumentato di priceNumber euri
+            cy.get('#counter-input').should('have.value', `${(totalPrice+priceNumber).toFixed(2)}€`)
+            let orderItem = cy.get('[aria-label="items-list"] [aria-label="cart-item"]').first();
+            let removeItemButton = orderItem.find('[aria-label="delete"]');
+            removeItemButton.click()
+            cy.get('#cart-price').should('have.value', `${totalPrice.toFixed(2)}€`)
+
+        } )
+
+
+
+        //removeItemButton.click();
+    });
 })

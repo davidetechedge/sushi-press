@@ -107,9 +107,10 @@ export const CartContainer: React.VFC = () => {
             </ListWrapper>
 
             <ListWrapper grow>
-                <List sx={{ width: '100%', bgcolor: 'background.paper', borderRadius: '10px' }}>
+                <List aria-label="items-list" sx={{ width: '100%', bgcolor: 'background.paper', borderRadius: '10px' }}>
                     {orderItems.map((item, index) => (
-                        <ListItem key={index} 
+                        <ListItem key={index}
+                            aria-label="cart-item"
                             alignItems="flex-start" 
                             sx={{ 
                                 borderBottom: '1px solid rgba(0,0,0,0.05)',
@@ -120,7 +121,7 @@ export const CartContainer: React.VFC = () => {
                             secondaryAction={
                                 <IconButton 
                                     edge="end" 
-                                    aria-label="comments" 
+                                    aria-label="delete"
                                     onClick={() => dispatch(removeOrderItem(index))}
                                 >
                                     <DeleteIcon />
@@ -155,7 +156,7 @@ export const CartContainer: React.VFC = () => {
                     <div style={{ display: 'inline-flex', alignItems: 'center' }}>
                         <h4 style={{ margin: 0, marginRight: '10px' }}>Total price:</h4>
                         <CustomizedInput
-                            value={cartValue.toFixed(2) + '€'}
+                           value={cartValue.toFixed(2) + '€'}
                             id="counter-input"
                             readOnly
                         />
