@@ -4,7 +4,7 @@ import orders from './reducers/orders'
 
 export const store = configureStore({
   reducer: {
-      orders
+    orders,
   },
 })
 

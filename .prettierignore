@@ -1,0 +1,8 @@
+# Ignore artifacts:
+.vscode
+.idea
+build
+coverage
+
+# Ignore all HTML files:
+*.html
