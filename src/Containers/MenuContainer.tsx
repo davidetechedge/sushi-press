@@ -115,7 +115,7 @@ const MenuContainer = () => {
       ))}
 
       <FixedHeaderContainer>
-        <CustomizedInput value={`${cartValue.toFixed(2)} €`} id="cart-price" readOnly />
+        <CustomizedInput value={`${cartValue.toFixed(2)}€`} id="cart-price" readOnly />
         <IconButton
           aria-label="cart"
           sx={{ color: '#282828' }}

@@ -176,7 +176,7 @@ export const CartContainer: React.VFC = () => {
         <SpacedRow>
           <div style={{ display: 'inline-flex', alignItems: 'center' }}>
             <h4 style={{ margin: 0, marginRight: '10px' }}>Total price:</h4>
-            <CustomizedInput value={`${cartValue.toFixed(2)} €`} id="counter-input" readOnly />
+            <CustomizedInput value={`${cartValue.toFixed(2)}€`} id="counter-input" readOnly />
           </div>
           <CustomButton onClick={() => setShowSendOrderModal(true)}>SEND ORDER</CustomButton>
         </SpacedRow>
