@@ -1,11 +1,10 @@
 import { Alert, Grid, IconButton, InputBase, Snackbar, styled } from '@mui/material'
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../store'
 import { resetOrder } from '../store/actions/orders'
-import { useCallback, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import CommonDrawer from '../Components/CommonDrawer'
-import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore'
-import * as React from 'react'
 import { MenuCategoryItem, OrderType } from '../store/types/orders'
 import { OrderItem } from '../Components/OrderItem'
 
@@ -60,29 +59,29 @@ const MenuContainer = () => {
     items: orderItems,
     billPrice,
   } = useAppSelector((state) => state.orders)
-  const [menuCategories, setMenuCategories] = useState<string[]>([])
-  const [menuItems, setMenuItems] = useState<MenuCategoryItem[]>([])
-  const [notifications, setNotifications] = useState<number>(0)
+  const [menuCategories, setMenuCategories] = React.useState<string[]>([])
+  const [menuItems, setMenuItems] = React.useState<MenuCategoryItem[]>([])
+  const [notifications, setNotifications] = React.useState<number>(0)
 
-  const onClickCategory = useCallback(
+  const onClickCategory = React.useCallback(
     (cat: string) => {
       setMenuItems(menu?.data?.find((elem) => elem.category === cat)?.items || [])
-      navigate(`/menu/` + cat)
+      navigate(`/menu/${cat}`)
     },
     [menu?.data, navigate],
   )
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (typeof orderType === 'undefined') {
       navigate(`/`)
     }
   }, [navigate, orderType])
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (menu.data && menu.data.length > 0) setMenuCategories(menu.data.map((elem) => elem.category))
   }, [menu])
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (menuCategories.length > 0 && !menuItems.length) onClickCategory(menuCategories[0])
   }, [menuCategories, menuItems.length, onClickCategory])
 
@@ -94,14 +93,12 @@ const MenuContainer = () => {
     return totalPrice + item.price * item.quantity
   }, billPrice)
 
-  useEffect(() => {
-    console.log('Current notifications:', notifications)
-  }, [notifications])
+  React.useEffect(() => {}, [notifications])
   return (
     <MyMenuContainer>
       {new Array(notifications).fill(0).map((_, index) => (
         <CustomizedSnackbar
-          key={index + Math.random() * 10}
+          key={`${index + Math.random() * 10}`}
           open
           autoHideDuration={6000}
           onClose={() => setNotifications((prev) => prev - 1)}
@@ -118,14 +115,14 @@ const MenuContainer = () => {
       ))}
 
       <FixedHeaderContainer>
-        <CustomizedInput value={cartValue.toFixed(2) + '€'} id="cart-price" readOnly />
+        <CustomizedInput value={`${cartValue.toFixed(2)} €`} id="cart-price" readOnly />
         <IconButton
           aria-label="cart"
           sx={{ color: '#282828' }}
           onClick={() => navigate('/cart')}
           disabled={!orderItems.length}
         >
-          <LocalGroceryStoreIcon fontSize={'large'} />
+          <LocalGroceryStoreIcon fontSize="large" />
         </IconButton>
       </FixedHeaderContainer>
       <CommonDrawer

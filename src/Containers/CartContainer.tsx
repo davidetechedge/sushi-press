@@ -12,13 +12,13 @@ import {
   styled,
   Typography,
 } from '@mui/material'
-import React, { useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../store'
+import React from 'react'
 import DeleteIcon from '@mui/icons-material/Delete'
-import { removeOrderItem, sendOrder } from '../store/actions/orders'
 import { useNavigate } from 'react-router-dom'
-import { OrderType } from '../store/types/orders'
 import { ButtonUnstyled } from '@mui/base'
+import { useAppDispatch, useAppSelector } from '../store'
+import { removeOrderItem, sendOrder } from '../store/actions/orders'
+import { OrderType } from '../store/types/orders'
 import sushiGif from '../Assets/Images/sushi.gif'
 
 const CustomButton = styled(ButtonUnstyled)({
@@ -65,10 +65,10 @@ const CustomizedInput = styled(InputBase)({
 export const CartContainer: React.VFC = () => {
   const dispatch = useAppDispatch()
   const { type: orderType, items: orderItems, billPrice } = useAppSelector((state) => state.orders)
-  const [showSendOrderModal, setShowSendOrderModal] = useState<boolean>(false)
+  const [showSendOrderModal, setShowSendOrderModal] = React.useState<boolean>(false)
   const navigate = useNavigate()
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!orderItems.length) navigate('/menu')
   }, [orderItems, navigate])
 
@@ -120,7 +120,7 @@ export const CartContainer: React.VFC = () => {
 
       <ListWrapper>
         <Button onClick={() => navigate('/menu')}>
-          <h3 style={{ margin: 0, marginBottom: '10px' }}>{'GO BACK'}</h3>
+          <h3 style={{ margin: 0, marginBottom: '10px' }}>GO BACK</h3>
         </Button>
       </ListWrapper>
 
@@ -131,7 +131,7 @@ export const CartContainer: React.VFC = () => {
         >
           {orderItems.map((item, index) => (
             <ListItem
-              key={index}
+              key={`${index.toString()}`}
               aria-label="cart-item"
               alignItems="flex-start"
               sx={{
@@ -156,17 +156,15 @@ export const CartContainer: React.VFC = () => {
               <ListItemText
                 primary={item.name}
                 secondary={
-                  <React.Fragment>
-                    <Typography
-                      sx={{ display: 'inline' }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    >
-                      {item.quantity}x
-                      {(orderType === OrderType.AYCE && item.included ? 0 : item.price).toFixed(2)}€
-                    </Typography>
-                  </React.Fragment>
+                  <Typography
+                    sx={{ display: 'inline' }}
+                    component="span"
+                    variant="body2"
+                    color="text.primary"
+                  >
+                    {item.quantity}x
+                    {(orderType === OrderType.AYCE && item.included ? 0 : item.price).toFixed(2)}€
+                  </Typography>
                 }
               />
             </ListItem>
@@ -178,11 +176,9 @@ export const CartContainer: React.VFC = () => {
         <SpacedRow>
           <div style={{ display: 'inline-flex', alignItems: 'center' }}>
             <h4 style={{ margin: 0, marginRight: '10px' }}>Total price:</h4>
-            <CustomizedInput value={cartValue.toFixed(2) + '€'} id="counter-input" readOnly />
+            <CustomizedInput value={`${cartValue.toFixed(2)} €`} id="counter-input" readOnly />
           </div>
-          <CustomButton variant="outlined" onClick={() => setShowSendOrderModal(true)}>
-            SEND ORDER
-          </CustomButton>
+          <CustomButton onClick={() => setShowSendOrderModal(true)}>SEND ORDER</CustomButton>
         </SpacedRow>
       </ListWrapper>
     </div>

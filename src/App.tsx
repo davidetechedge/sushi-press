@@ -1,9 +1,9 @@
 import React from 'react'
+import { GlobalStyles } from '@mui/material'
 import './App.css'
 import AppRouter from './AppRouter'
-import { GlobalStyles } from '@mui/material'
 
-function App() {
+const App = () => {
   return (
     <div>
       <GlobalStyles

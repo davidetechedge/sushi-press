@@ -27,7 +27,6 @@ export default createReducer(initialState, (builder) => {
     .addCase(setOrderType, (state, action) => {
       state.type = action.payload
       state.billPrice = (state.type === OrderType.AYCE ? 24.99 : 2.5) * state.people
-      console.log('billPrice', state.billPrice)
     })
     .addCase(resetOrder, (state) => {
       state.people = 1
@@ -37,7 +36,7 @@ export default createReducer(initialState, (builder) => {
       state.billPrice = 0
     })
     .addCase(addOrderItem, (state, action) => {
-      let itemAlreadyAdded = state.items.findIndex((item) => {
+      const itemAlreadyAdded = state.items.findIndex((item) => {
         return (
           item.id === action.payload.id &&
           item.name === action.payload.name &&
@@ -52,7 +51,7 @@ export default createReducer(initialState, (builder) => {
       }
     })
     .addCase(removeOrderItem, (state, action) => {
-      let updatedList = [...state.items]
+      const updatedList = [...state.items]
 
       updatedList.splice(action.payload, 1)
       state.items = updatedList
@@ -68,7 +67,6 @@ export default createReducer(initialState, (builder) => {
       return totalPrice + item.price * item.quantity
     }, state.billPrice)
     state.items = []
-    console.log('Dai cazzo')
   })
 
   builder

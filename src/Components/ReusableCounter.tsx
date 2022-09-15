@@ -26,15 +26,16 @@ const CustomizedInput = styled(InputBase)({
   },
 })
 
-function ReusableCounter(props: ReusableCounterProps) {
+const ReusableCounter = (props: ReusableCounterProps) => {
+  const { label, counter, onClickAdd, onClickRemove } = props
   return (
     <CounterContainer>
-      <h5>{props.label}</h5>
-      <IconButton aria-label="remove" sx={{ color: '#D3CD00' }} onClick={props.onClickRemove}>
+      <h5>{label}</h5>
+      <IconButton aria-label="remove" sx={{ color: '#D3CD00' }} onClick={onClickRemove}>
         <RemoveCircleRoundedIcon />
       </IconButton>
-      <CustomizedInput value={props.counter} id="counter-input" readOnly />
-      <IconButton aria-label="add" sx={{ color: '#D3CD00' }} onClick={props.onClickAdd}>
+      <CustomizedInput value={counter} id="counter-input" readOnly />
+      <IconButton aria-label="add" sx={{ color: '#D3CD00' }} onClick={onClickAdd}>
         <AddCircleRoundedIcon />
       </IconButton>
     </CounterContainer>

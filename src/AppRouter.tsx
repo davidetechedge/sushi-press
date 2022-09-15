@@ -1,3 +1,4 @@
+import React from 'react'
 import { createBrowserHistory } from 'history'
 import { Route, BrowserRouter, Routes } from 'react-router-dom'
 import { CartContainer } from './Containers/CartContainer'

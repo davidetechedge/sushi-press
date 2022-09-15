@@ -20,7 +20,7 @@ const CustomList = styled(List)({
   margin: '0 0 50px 0',
 })
 
-const CustomButton = styled(ButtonUnstyled)<DivProps>(({ theme, active }) => ({
+const CustomButton = styled(ButtonUnstyled)<DivProps>(({ active }) => ({
   fontWeight: 'bold',
   fontSize: '0.875rem',
   color: '#282828',
@@ -63,13 +63,12 @@ const MenuCategory = styled('div')({
 
 const drawerWidth = 300
 
-function CommonDrawer(props: CommonDrawerProps) {
+const CommonDrawer = ({ items, goBack, onClickCategory, type }: CommonDrawerProps) => {
   const location = useLocation()
   const [activeCategory, setActiveCategory] = useState<string>('')
 
   useEffect(() => {
     const pathArray = location.pathname.split('/')
-    console.log(pathArray[pathArray.length - 1])
     setActiveCategory(pathArray[pathArray.length - 1])
   }, [location])
 
@@ -92,20 +91,20 @@ function CommonDrawer(props: CommonDrawerProps) {
       <DrawerContent>
         <div>
           <LogoContainer>
-            <img
-              src={logo}
-              style={{ maxWidth: '50%', height: 'auto', cursor: 'pointer' }}
-              alt="SushiPress Logo"
-              onClick={props.goBack}
-            />
+            <div role="button" tabIndex={0} onClick={goBack} onKeyPress={() => {}}>
+              <img
+                src={logo}
+                style={{ maxWidth: '50%', height: 'auto', cursor: 'pointer' }}
+                alt="SushiPress Logo"
+              />
+            </div>
           </LogoContainer>
           <CustomList aria-label="category-list">
-            {props.items.map((text) => (
+            {items.map((text) => (
               <ListItem key={text}>
                 <CustomButton
-                  variant="outlined"
                   active={text === activeCategory ? 'true' : 'false'}
-                  onClick={() => props.onClickCategory(text)}
+                  onClick={() => onClickCategory(text)}
                 >
                   {text.toUpperCase()}
                 </CustomButton>
@@ -117,11 +116,11 @@ function CommonDrawer(props: CommonDrawerProps) {
           <h4>
             <span>Menu:</span>
             <span aria-label="menu-type">{`${
-              props.type === OrderType.AYCE ? 'all you can eat' : 'à la carte'
+              type === OrderType.AYCE ? 'all you can eat' : 'à la carte'
             }`}</span>
           </h4>
-          <Button onClick={props.goBack}>
-            <h3 style={{ margin: 0 }}>{'GO BACK TO MENU SELECTION'}</h3>
+          <Button onClick={goBack}>
+            <h3 style={{ margin: 0 }}>GO BACK TO MENU SELECTION</h3>
           </Button>
         </MenuCategory>
       </DrawerContent>

@@ -36,42 +36,53 @@ const FixedPriceContainer = styled('div')({
   textAlign: 'center',
 })
 
-function ReusableBox(props: ReusableBoxProps) {
+const ReusableBox = ({
+  squared,
+  imgUrl,
+  allowClick,
+  onClick,
+  price,
+  greyLabel,
+  label,
+}: ReusableBoxProps) => {
   return (
     <Box
       sx={{
         minWidth: 227,
         height: 227,
         margin: '30px',
-        borderRadius: props.squared ? 0 : '10px',
+        borderRadius: squared ? 0 : '10px',
         backgroundSize: 'cover',
-        backgroundImage: 'url(' + props.imgUrl + ')',
+        backgroundImage: `url(${imgUrl})`,
         backgroundRepeat: 'no-repeat',
         '&:hover': {
-          opacity: props.allowClick ? [0.9, 0.8, 0.7] : 1,
+          opacity: allowClick ? [0.9, 0.8, 0.7] : 1,
         },
         display: 'flex',
         alignItems: 'flex-end',
         position: 'relative',
-        cursor: props.allowClick ? 'pointer' : 'default',
+        cursor: allowClick ? 'pointer' : 'default',
       }}
-      onClick={props.onClick}
+      onClick={onClick}
     >
-      {typeof props.price !== 'undefined' && (
+      {typeof price !== 'undefined' && (
         <FixedPriceContainer>
           <Typography variant="body1" display="block" aria-label="item-price">
-            {props.price.toFixed(2) + '€'}
+            {`${price.toFixed(2)}€`}
           </Typography>
         </FixedPriceContainer>
       )}
-      <LabelContainer
-        greylabel={props.greyLabel ? 'true' : 'false'}
-        squared={props.squared ? 'true' : 'false'}
-      >
-        <h3 style={{ marginTop: props.greyLabel ? '15px' : '' }}>{props.label}</h3>
+      <LabelContainer greylabel={greyLabel ? 'true' : 'false'} squared={squared ? 'true' : 'false'}>
+        <h3 style={{ marginTop: greyLabel ? '15px' : '' }}>{label}</h3>
       </LabelContainer>
     </Box>
   )
+}
+
+ReusableBox.defaultProps = {
+  allowClick: false,
+  squared: false,
+  price: 0,
 }
 
 export default ReusableBox

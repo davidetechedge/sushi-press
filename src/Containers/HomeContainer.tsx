@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { styled } from '@mui/material'
 import ReusableBox from '../Components/ReusableBox'
@@ -56,11 +56,11 @@ const HomeContainer = () => {
   const dispatch = useAppDispatch()
   const { people: peopleCounter, type: orderType } = useAppSelector((state) => state.orders)
 
-  useEffect(() => {
+  React.useEffect(() => {
     dispatch(getMenu())
   }, [dispatch])
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (typeof orderType !== 'undefined') {
       navigate(`/menu`)
     }
@@ -76,21 +76,21 @@ const HomeContainer = () => {
           <ReusableBox
             allowClick
             imgUrl={allyoucaneat}
-            label={'All you can eat *'}
+            label="All you can eat *"
             onClick={() => dispatch(setOrderType(OrderType.AYCE))}
             greyLabel={false}
           />
           <ReusableBox
             allowClick
             imgUrl={alacarte}
-            label={'A la carte **'}
+            label="A la carte **"
             onClick={() => dispatch(setOrderType(OrderType.CARTE))}
             greyLabel={false}
           />
         </FlexContainerBoxes>
         <FlexContainerCounter>
           <ReusableCounter
-            label={'PEOPLE'}
+            label="PEOPLE"
             counter={peopleCounter}
             onClickAdd={() => dispatch(setOrderPeople(peopleCounter + 1))}
             onClickRemove={() => dispatch(setOrderPeople(peopleCounter - 1))}
@@ -98,8 +98,8 @@ const HomeContainer = () => {
         </FlexContainerCounter>
       </ItemsContainer>
       <FooterTextContainer>
-        <h5>{'* All you can eat menu has a fixed cost of 24,99€ per person'}</h5>
-        <h5>{'** Á la carte menu has a fixed cost of 2,50€ per person'}</h5>
+        <h5>* All you can eat menu has a fixed cost of 24,99€ per person</h5>
+        <h5>** Á la carte menu has a fixed cost of 2,50€ per person</h5>
       </FooterTextContainer>
     </MyHomeContainer>
   )

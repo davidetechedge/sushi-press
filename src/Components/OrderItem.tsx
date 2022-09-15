@@ -1,9 +1,9 @@
 import { Grid, styled } from '@mui/material'
 import React, { useState } from 'react'
+import ButtonUnstyled from '@mui/base/ButtonUnstyled'
 import { MenuCategoryItem, OrderType } from '../store/types/orders'
 import ReusableBox from './ReusableBox'
 import ReusableCounter from './ReusableCounter'
-import ButtonUnstyled from '@mui/base/ButtonUnstyled'
 import { useAppDispatch, useAppSelector } from '../store'
 import { addOrderItem } from '../store/actions/orders'
 
@@ -76,16 +76,14 @@ export const OrderItem: React.VFC<OrderItemProps> = ({ data, onAdd }) => {
         </OrderHeader>
         <FlexContainerCounter>
           <ReusableCounter
-            label={'QUANTITY'}
+            label="QUANTITY"
             counter={quantity}
             onClickAdd={() => setQuantity((counter) => counter + 1)}
             onClickRemove={() => setQuantity((counter) => Math.max(1, counter - 1))}
           />
         </FlexContainerCounter>
         <FlexContainerCounter>
-          <CustomButton variant="outlined" onClick={addOrder}>
-            ADD TO CART
-          </CustomButton>
+          <CustomButton onClick={addOrder}>ADD TO CART</CustomButton>
         </FlexContainerCounter>
       </OrderContainer>
     </Grid>

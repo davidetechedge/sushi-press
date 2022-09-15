@@ -5,17 +5,17 @@ export enum OrderType {
   CARTE = 'a-la-carte',
 }
 
-export type MenuCategories = {
-  category: string
-  items: MenuCategoryItem[]
-}
-
 export type MenuCategoryItem = {
   id: number
   name: string
   price: number
   img: string
   included: boolean
+}
+
+export type MenuCategories = {
+  category: string
+  items: MenuCategoryItem[]
 }
 
 export type OrderItem = MenuCategoryItem & {
