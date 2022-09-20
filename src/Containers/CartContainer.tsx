@@ -62,7 +62,7 @@ const CustomizedInput = styled(InputBase)({
   },
 })
 
-export const CartContainer: React.VFC = () => {
+const CartContainer: React.VFC = () => {
   const dispatch = useAppDispatch()
   const { type: orderType, items: orderItems, billPrice } = useAppSelector((state) => state.orders)
   const [showSendOrderModal, setShowSendOrderModal] = React.useState<boolean>(false)
@@ -184,3 +184,5 @@ export const CartContainer: React.VFC = () => {
     </div>
   )
 }
+
+export default CartContainer

@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { IconButton, styled, InputBase } from '@mui/material'
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded'
 import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircleRounded'

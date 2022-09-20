@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { Button, Drawer, List, ListItem, styled } from '@mui/material'
 import ButtonUnstyled from '@mui/base/ButtonUnstyled'
 import { useLocation } from 'react-router-dom'
@@ -119,7 +118,7 @@ const CommonDrawer = ({ items, goBack, onClickCategory, type }: CommonDrawerProp
               type === OrderType.AYCE ? 'all you can eat' : 'à la carte'
             }`}</span>
           </h4>
-          <Button onClick={goBack}>
+          <Button onClick={goBack} color="secondary">
             <h3 style={{ margin: 0 }}>GO BACK TO MENU SELECTION</h3>
           </Button>
         </MenuCategory>

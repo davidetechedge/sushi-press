@@ -3,7 +3,12 @@
     "browser": true
   },
   "plugins": ["prettier", "react", "@typescript-eslint", "react-hooks", "eslint-plugin-import"],
-  "extends": ["airbnb", "plugin:prettier/recommended", "plugin:import/typescript"],
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended",
+    "plugin:import/typescript",
+    "plugin:react/jsx-runtime"
+  ],
   "parser": "@typescript-eslint/parser",
   "rules": {
     "import/no-extraneous-dependencies": 0,
@@ -25,5 +30,6 @@
         "unnamedComponents": ["function-expression", "arrow-function"]
       }
     ]
-  }
+  },
+  "ignorePatterns": ["src/stories/*"] // <<< ignore all files in stories folder
 }

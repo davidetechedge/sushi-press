@@ -1,5 +1,5 @@
 import { Grid, styled } from '@mui/material'
-import React, { useState } from 'react'
+import React from 'react'
 import ButtonUnstyled from '@mui/base/ButtonUnstyled'
 import { MenuCategoryItem, OrderType } from '../store/types/orders'
 import ReusableBox from './ReusableBox'
@@ -47,7 +47,7 @@ export type OrderItemProps = {
 }
 
 export const OrderItem: React.VFC<OrderItemProps> = ({ data, onAdd }) => {
-  const [quantity, setQuantity] = useState<number>(1)
+  const [quantity, setQuantity] = React.useState<number>(1)
   const dispatch = useAppDispatch()
   const { type } = useAppSelector((state) => state.orders)
 

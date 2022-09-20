@@ -1,4 +1,3 @@
-import * as React from 'react'
 import Box from '@mui/material/Box'
 import { styled, Typography } from '@mui/material'
 
@@ -12,17 +11,17 @@ interface ReusableBoxProps {
   price?: number
 }
 interface DivProps {
-  greylabel?: 'true' | 'false'
-  squared?: 'true' | 'false'
+  greylabel: boolean
+  squared: boolean
 }
 
 const LabelContainer = styled('div')<DivProps>((props) => ({
-  backgroundColor: props.greylabel === 'true' ? '#E3E3E3' : '#FFFFFF',
+  backgroundColor: props.greylabel ? '#E3E3E3' : '#FFFFFF',
   width: '100%',
-  borderBottomLeftRadius: props.squared === 'true' ? 0 : '10px',
-  borderBottomRightRadius: props.squared === 'true' ? 0 : '10px',
+  borderBottomLeftRadius: props.squared ? 0 : '10px',
+  borderBottomRightRadius: props.squared ? 0 : '10px',
   position: 'sticky',
-  lineHeight: props.greylabel === 'true' ? 0 : '10px',
+  lineHeight: props.greylabel ? 0 : '10px',
   textAlign: 'center',
 }))
 
@@ -72,7 +71,7 @@ const ReusableBox = ({
           </Typography>
         </FixedPriceContainer>
       )}
-      <LabelContainer greylabel={greyLabel ? 'true' : 'false'} squared={squared ? 'true' : 'false'}>
+      <LabelContainer greylabel={greyLabel} squared={squared ?? false}>
         <h3 style={{ marginTop: greyLabel ? '15px' : '' }}>{label}</h3>
       </LabelContainer>
     </Box>
@@ -82,7 +81,7 @@ const ReusableBox = ({
 ReusableBox.defaultProps = {
   allowClick: false,
   squared: false,
-  price: 0,
+  price: undefined,
 }
 
 export default ReusableBox

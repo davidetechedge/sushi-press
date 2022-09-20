@@ -21,19 +21,21 @@ Se questo primo comando dovesse dare problemi con [nvm](https://github.com/nvm-s
 ## Available script
 
 ### `npm start`
+
 Comando che serve per far runnare la app in development mode.\
 Apre la finestra del browser al link [http://localhost:3000](http://localhost:3000).
 
 ### `npm run build`
 
-Crea una cartella  nella root con il nome `build`.\
+Crea una cartella nella root con il nome `build`.\
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-
 ### `npm test`
+
 Questo è il comando per far runnare cypress.
 
 ### `npm run prettier`
+
 Questo è il comando per formattare il codice con l'utilizzo di prettier.\
 È possibile settare l'estensione sul proprio editor, seguendo la [guida](https://prettier.io/docs/en/editors.html), oppure scrivere questo comando prima di pushare codice. In questo modo tutti avranno il codice con il medesimo stile.

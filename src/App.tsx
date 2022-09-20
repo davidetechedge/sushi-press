@@ -1,4 +1,3 @@
-import React from 'react'
 import { GlobalStyles } from '@mui/material'
 import './App.css'
 import AppRouter from './AppRouter'
