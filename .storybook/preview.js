@@ -11,8 +11,12 @@ export const parameters = {
         value: '#FFF8EF',
       },
       {
-        name: 'facebook',
-        value: '#3b5998',
+        name: 'white',
+        value: '#fff',
+      },
+      {
+        name: 'black',
+        value: '#000',
       },
     ],
   },
