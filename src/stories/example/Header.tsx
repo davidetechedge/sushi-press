@@ -1,4 +1,3 @@
-import { Typography } from '@mui/material'
 import { Button } from './Button'
 import './header.css'
 
@@ -33,7 +32,7 @@ export const Header = ({ user, onLogin, onLogout, onCreateAccount }: HeaderProps
             />
           </g>
         </svg>
-        <Typography variant="h1">Acme</Typography>
+        <h1>Acme</h1>
       </div>
       <div>
         {user ? (

@@ -1,3 +1,4 @@
+import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { Button } from './Button'
@@ -9,6 +10,12 @@ export default {
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     backgroundColor: { control: 'color' },
+    size: {
+      control: {
+        type: 'select',
+      },
+      options: ['tiny', 'small', 'medium', 'large'],
+    },
   },
 } as ComponentMeta<typeof Button>
 
@@ -31,9 +38,6 @@ export const Large = Template.bind({})
 Large.args = {
   size: 'large',
   label: 'Button',
-}
-Large.parameters = {
-  backgrounds: { disable: true },
 }
 
 export const Small = Template.bind({})

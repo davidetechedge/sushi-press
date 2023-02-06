@@ -1,9 +1,16 @@
+import PropTypes from 'prop-types'
 import './button.css'
 
-interface ButtonProps {
+enum sizes {
+  small = 'small',
+  medium = 'medium',
+  large = 'large',
+}
+
+type ButtonProps = {
   /**
-   * Is this the principal call to action on the page?
-   */
+    Use the loading state to indicate that the data Avatar needs is still loading.
+    */
   primary?: boolean
   /**
    * What background color to use
