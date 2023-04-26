@@ -1,42 +1,42 @@
-import { Grid, styled } from '@mui/material'
-import React from 'react'
-import ButtonUnstyled from '@mui/base/ButtonUnstyled'
-import { MenuCategoryItem, OrderType } from '../store/types/orders'
-import ReusableBox from './ReusableBox'
-import ReusableCounter from './ReusableCounter'
-import { useAppDispatch, useAppSelector } from '../store'
-import { addOrderItem } from '../store/actions/orders'
+import { Grid, styled } from "@mui/material"
+import React from "react"
+import ButtonUnstyled from "@mui/base/ButtonUnstyled"
+import { MenuCategoryItem, OrderType } from "../store/types/orders"
+import ReusableBox from "./ReusableBox"
+import ReusableCounter from "./ReusableCounter"
+import { useAppDispatch, useAppSelector } from "../store"
+import { addOrderItem } from "../store/actions/orders"
 
-const FlexContainerCounter = styled('div')({
-  display: 'flex',
-  justifyContent: 'center',
+const FlexContainerCounter = styled("div")({
+  display: "flex",
+  justifyContent: "center",
 })
 
 const CustomButton = styled(ButtonUnstyled)({
-  marginTop: '30px',
-  fontWeight: 'bold',
-  fontSize: '0.875rem',
-  color: '#282828',
-  width: '200px',
-  borderRadius: '10px',
-  backgroundColor: '#D3CD00',
-  padding: '12px 24px',
-  cursor: 'pointer',
-  border: 'none',
-  '&:hover': {
-    backgroundColor: '#C9C9C9',
+  marginTop: "30px",
+  fontWeight: "bold",
+  fontSize: "0.875rem",
+  color: "#282828",
+  width: "200px",
+  borderRadius: "10px",
+  backgroundColor: "#D3CD00",
+  padding: "12px 24px",
+  cursor: "pointer",
+  border: "none",
+  "&:hover": {
+    backgroundColor: "#C9C9C9",
   },
 })
 
-const OrderContainer = styled('div')({
+const OrderContainer = styled("div")({
   padding: 8,
   paddingTop: 0,
   borderRadius: 16,
-  backgroundColor: '#fff',
-  overflow: 'hidden',
+  backgroundColor: "#fff",
+  overflow: "hidden",
 })
 
-const OrderHeader = styled('div')({
+const OrderHeader = styled("div")({
   margin: -38,
   marginBottom: 0,
 })

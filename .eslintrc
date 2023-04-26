@@ -2,7 +2,7 @@
   "env": {
     "browser": true
   },
-  "plugins": ["prettier", "react", "@typescript-eslint", "react-hooks", "eslint-plugin-import"],
+  "plugins": ["react", "@typescript-eslint", "react-hooks", "eslint-plugin-import", "prettier"],
   "extends": [
     "airbnb",
     "plugin:prettier/recommended",
